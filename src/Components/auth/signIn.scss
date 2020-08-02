@@ -1,0 +1,36 @@
+// Variables
+
+$form-width: 100%;
+
+.signin {
+  text-align: center;
+}
+
+.welcome {
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Paytone One", sans-serif;
+}
+
+// input {
+//   .firstName {
+//     width: 20% !important;
+//   }
+// }
+
+.existing-account {
+  margin-bottom: 15%;
+}
+
+.sent-verification-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media all and (max-width: 692px) {
+  .existing-account {
+    margin-bottom: 35%;
+  }
+}
