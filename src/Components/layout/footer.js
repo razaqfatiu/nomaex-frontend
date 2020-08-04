@@ -8,7 +8,8 @@ import { Navbar, Container, Row, Col, } from "react-bootstrap";
 export default class Footer extends Component {
   render() {
     return (
-      <Navbar className="footer-main-div" fixed="bottom">
+      // <Navbar className="footer-main-div" fixed="bottom">
+      <Navbar className="footer-main-div" >
         <Container fluid className="footer-div">
           {/* <Container> */}
           <Row className="Row">
