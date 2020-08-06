@@ -7,6 +7,8 @@ import ResetPassword from './Components/auth/ResetPassword';
 
 import NavBar from './Components/layout/Navbar';
 import ProductUpload from './Components/Admin/ProductUpload';
+
+import HomePage from './Components/users/HomePage';
 // import Home from './Components/Admin/Home'
 // import Homes from './Components/users/home'
 import './App.scss'
@@ -95,7 +97,7 @@ class App extends Component {
             <NavBar toggle={this.toggle} />
 
             <Switch>
-              {/* <Route exact path="/"> <Homes toggle={this.toggle} isOpen={this.state.isOpen} /> </Route> */}
+              <Route exact path="/"component={HomePage}/>
               {/* <Route path="/categories/animal" component={Animal} /> */}
               <Route path="/categories/cereal" component={Cereal} />
               <Route path="/categories/animal" component={LiveStock} />
