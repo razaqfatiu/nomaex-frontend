@@ -7,7 +7,7 @@ const initState = {
 const productReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADDED_ITEM_TO_CART_SUCCESS':
-      console.log('added to cart success');
+      // console.log('added to cart success');
       return {
         ...state,
         carts: action.cart,
@@ -15,13 +15,13 @@ const productReducer = (state = initState, action) => {
         cartError: null
       };
     case 'ADDED_ITEM_TO_CART_FAILURE':
-      console.log('added to cart failed');
+      // console.log('added to cart failed');
       return {
         ...state,
         cartError: action.error.response
       };
     case 'DELETED_ITEM_FROM_CART_SUCCESS':
-      console.log('DELETED_ITEM_FROM_CART_SUCCESS');
+      // console.log('DELETED_ITEM_FROM_CART_SUCCESS');
       return {
         ...state,
         carts: action.cart,
@@ -29,13 +29,13 @@ const productReducer = (state = initState, action) => {
         cartError: null
       };
     case 'DELETED_ITEM_FROM_CART_FAILURE':
-      console.log('ELETED_ITEM_FROM_CART failed');
+      // console.log('ELETED_ITEM_FROM_CART failed');
       return {
         ...state,
         cartError: action.error.response
       };
     case 'GET_USER_CART_ITEMS_SUCCESS':
-      console.log('GET_USER_CART_ITEMS_SUCCESS');
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
       return {
         ...state,
         carts: action.cart,
@@ -43,7 +43,7 @@ const productReducer = (state = initState, action) => {
         cartError: null
       };
     case 'GET_USER_CART_ITEMS_FAILURE':
-      console.log('GET_USER_CART_ITEMS_failed');
+      // console.log('GET_USER_CART_ITEMS_failed');
       return {
         ...state,
         cartError: action.error.response

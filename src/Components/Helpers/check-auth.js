@@ -16,8 +16,8 @@ function CheckAuth() {
     return false
   }
   this.isAdmin = () => {
-    if (this.isAuth() && loadCred.isAdministrator) return this.isAdministrator = true
-    return this.isAdministrator
+    if (this.isAuth() && loadCred.isAdministrator) return true
+    return false
   }
   this.getSavedData = () => {
     if (loadCred !== {}) return loadCred

@@ -54,21 +54,28 @@ class SignIn extends Component {
     }
     return (
       <div className="signin">
-        <h1 className="welcome">WELCOME BACK</h1>
+        <h1 className="welcome">WELCOME BACK TO NomaEx</h1>
         <hr className="line" />
 
         <div className="form-div">
-          <form className="text-center border rounded border-light p-5 bg-light" onSubmit={this.handleSubmit}>
+          <form className="container text-center border rounded border-light p-5 bg-light mb-5" onSubmit={this.handleSubmit}>
 
-            <h2 className="p-3">Nomeax</h2>
             <p className="text-danger">{error ? error : ''}</p>
             {/* Email */}
-            <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" className="form-control mb-4" placeholder="E-mail" onChange={this.handleChange} required />
+            <div className="form-group row text-left">
+             <label htmlFor="email" className="col-sm-2 col-form-label" > <b> Email Address:</b></label>
+              <div className="col-sm-10">
+                <input type="email" id="email" className="form-control mb-4" placeholder="E-mail" onChange={this.handleChange} required />
+              </div>
+            </div>
 
             {/* Password */}
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" className="form-control mb-4" placeholder="Password" onChange={this.handleChange} required />
+            <div className="form-group row text-left">
+              <label htmlFor="password" className="col-sm-2 col-form-label"><b>Password:</b></label>
+              <div className="col-sm-10">
+                <input type="password" id="password" className="form-control mb-4" placeholder="Password" onChange={this.handleChange} required />
+              </div>
+            </div>
 
             {/* error*/}
 
@@ -80,8 +87,8 @@ class SignIn extends Component {
             </div>
 
             {/* Sign in button */}
-            <button className="btn btn-success btn-block my-4" type="submit" id="login">Sign in</button>
-            <p>Do not have an account?
+            <button className="btn btn-success btn my-4" type="submit" id="login">Sign in</button>
+            <p>Do not have an account? &nbsp;
                 <Link to="/signup">Sign Up</Link>
             </p>
           </form>

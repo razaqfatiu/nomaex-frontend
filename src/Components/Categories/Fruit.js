@@ -6,7 +6,7 @@ import { Button, Nav, Card, Container, Row, Col, CardGroup, ButtonGroup, Carouse
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom'
-import '../Admin/Product.scss'
+import '../Product/Product.scss'
 
 class Fruit extends Component {
 

@@ -8,7 +8,7 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case 'SIGNUP_SUCCESS':
-      console.log('signup success');
+      // console.log('signup success');
       return {
         ...state,
         payload: action.payload,
@@ -16,14 +16,14 @@ const authReducer = (state = initState, action) => {
         authError: null
       };
     case 'SIGNUP_FAILURE':
-      console.log('signup failed')
+      // console.log('signup failed')
       return {
         ...state,
         authError: action.error.message
       }
 
     case 'SIGNIN_SUCCESS':
-      console.log('signin success');
+      // console.log('signin success');
       return {
         ...state,
         isLoggedIn: true,
@@ -32,13 +32,13 @@ const authReducer = (state = initState, action) => {
         authError: null
       };
     case 'SIGNIN_FAILURE':
-      console.log('signin failed')
+      // console.log('signin failed')
       return {
         ...state,
         authError: action.error.response
       }
     case 'FORGOT_PASSWORD_SUCCESS':
-      console.log('forgot password success')
+      // console.log('forgot password success')
       return {
         ...state,
         payload: action.payload,
@@ -46,13 +46,13 @@ const authReducer = (state = initState, action) => {
         authError: null
       }
     case 'FORGOT_PASSWORD_FAILURE':
-      console.log('Forgot password failed')
+      // console.log('Forgot password failed')
       return {
         ...state,
         authError: action.error.response
       }
     case 'RESET_PASSWORD_SUCCESS':
-      console.log('Reset password success')
+      // console.log('Reset password success')
       return {
         ...state,
         payload: action.payload,
@@ -60,13 +60,13 @@ const authReducer = (state = initState, action) => {
         authError: null
       }
     case 'RESET_PASSWORD_FAILURE':
-      console.log('Reset password failed')
+      // console.log('Reset password failed')
       return {
         ...state,
         authError: action.error.response
       }
     case 'SIGN_OUT_SUCCESS':
-      console.log('auth success');
+      // console.log('auth success');
       return {
         ...state,
         isLoggedIn: false,
@@ -75,7 +75,7 @@ const authReducer = (state = initState, action) => {
         authError: null
       };
     case 'SIGN_OUT_FAILURE':
-      console.log('auth failed')
+      // console.log('auth failed')
       return {
         ...state,
         authError: action.error.response

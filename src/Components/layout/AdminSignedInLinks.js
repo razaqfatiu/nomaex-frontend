@@ -7,7 +7,7 @@ class AdminSignedInLinks extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      carts: []
+      carts: [],
     }
   }
   componentWillMount() {
@@ -21,16 +21,13 @@ class AdminSignedInLinks extends Component {
   render() {
     const { prop } = this.props
     const { cart } = prop
-    const { carts } = cart
-    // console.log(this.props.prop.cart.carts)
-    // console.log(carts)
-
     return (
       <Nav className="ml-auto" navbar >
         <Nav.Link className="text-white" href="/admin/product-upload">Upload</Nav.Link>
         {/* <Nav.Link className="text-white" href="/">Products</Nav.Link> */}
         <Nav.Link className="text-white" href="/admin/store">Store</Nav.Link>
-        <Nav.Link className="text-white" href="/cart"><i className="fa fa-shopping-cart"></i> <span className="badge badge-light">{carts && carts.length || 0}</span></Nav.Link>
+        <Nav.Link className="text-white" href="/cart">Cart <i className="fa fa-shopping-cart"></i> </Nav.Link>
+        {/* <span className="badge badge-light">{carts && carts.length || 0}</span> */}
         <Nav.Link className="text-white" href="/admin/orders">Orders</Nav.Link>
         <Nav.Link className="text-white" onClick={prop.signOut} href="/signin"> Signout</Nav.Link>
 

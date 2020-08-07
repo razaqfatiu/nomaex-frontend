@@ -52,7 +52,7 @@ class SignUp extends Component {
     return (
       <div className="signin">
 
-        <h1 className="welcome">WELCOME to Nomeax</h1>
+        <h1 className="welcome">WELCOME to NomaEx</h1>
         <hr className="line" />
 
         <div className="form-div">
@@ -61,74 +61,93 @@ class SignUp extends Component {
 
           <form className="text-center border border-light p-5 rounded bg-light" onSubmit={this.handleSubmit}>
 
-            <div className="form-row">
-              <div class="form-group col-md-6">
-                {/* First name */}
-                <label htmlFor="firstName">First Name: </label>
-                <input type="text" id="firstName" name="firstName" className="form-control" placeholder="First name"  required pattern=".{3,}" title="First name should have at least 3 characters" onChange={this.handleChange} />
+            <div className="form-group row text-left">
+              {/* First name */}
+              <label htmlFor="firstName" className="col-sm-4 col-form-label">First Name: </label>
+              <div className="col-sm-8">
+                <input type="text" id="firstName" name="firstName" className="form-control" placeholder="First name" required pattern=".{3,}" title="First name should have at least 3 characters" onChange={this.handleChange} />
               </div>
-              <div class="form-group col-md-6">
-                {/* Last name */}
-                <label htmlFor="lastName">Last Name: </label>
+            </div>
+
+            {/* Last name */}
+            <div className="form-group row text-left">
+              <label htmlFor="lastName" className="col-sm-4 col-form-label">Last Name: </label>
+              <div className="col-sm-8">
                 <input type="text" id="lastName" name="lastName" className="form-control" placeholder="Last name" required pattern=".{3,}" title="Last name should have at least 3 characters" onChange={this.handleChange} />
               </div>
+            </div>
 
 
-              <div class="form-group col-md-12">
-                {/* E-mail */}
-                <label htmlFor="email">Email: </label>
+
+            {/* E-mail */}
+            <div className="form-group row text-left">
+              <label htmlFor="email" className="col-sm-4 col-form-label">Email: </label>
+              <div className="col-sm-8">
                 <input type="email" id="email" name="email" className="form-control" placeholder="E-mail" required onChange={this.handleChange} />
               </div>
+            </div>
 
-              <div class="form-group col-md-6">
-                {/* Address */}
-                <label htmlFor="address1"> Address Line 1:  </label>
+            {/* Address */}
+            <div className="form-group row text-left">
+              <label htmlFor="address1" className="col-sm-4 col-form-label"> Address Line 1:  </label>
+              <div className="col-sm-8">
                 <input type="text" id="address1" className="form-control" name="address1" placeholder="Address 1" required pattern=".{10,}" title="Address should have at least 10 characters" onChange={this.handleChange} />
               </div>
-              <div class="form-group col-md-6">
-                {/* Address */}
-                <label htmlFor="address2">Address Line 2: </label>
+            </div>
+
+            {/* Address */}
+            <div className="form-group row text-left">
+              <label htmlFor="address2" className="col-sm-4 col-form-label">Address Line 2: </label>
+              <div className="col-sm-8">
                 <input type="text" id="address2" className="form-control" name="address2" placeholder="Address 2" pattern=".{3,}" title="Address 2 should have at least 3 characters" onChange={this.handleChange} />
               </div>
+            </div>
 
-              <div class="form-group col-md-6">
-                {/* State */}
-                <label htmlFor="state">State: </label>
+
+            {/* State */}
+            <div className="form-group row text-left">
+              <label htmlFor="state" className="col-sm-4 col-form-label">State: </label>
+              <div className="col-sm-8">
                 <input type="text" id="state" className="form-control" name="state" placeholder="State" required pattern=".{5,}" title="State should have at least 5 characters" onChange={this.handleChange} />
               </div>
-              <div class="form-group col-md-6">
-                {/* Phone number */}
-                <label htmlFor="phoneNumber">Contact Number: </label>
+            </div>
+
+            {/* Phone number */}
+            <div className="form-group row text-left">
+              <label htmlFor="phoneNumber" className="col-sm-4 col-form-label">Contact Number: </label>
+              <div className="col-sm-8">
                 <input type="tel" id="phoneNumber" className="form-control" name="phoneNumber" placeholder="Phone" required pattern=".{11,11}" title="Phone Number should have just 11 Digits" onChange={this.handleChange} />
               </div>
+            </div>
 
 
-              {/* Password */}
-              <div class="form-group col-md-6">
-                <label htmlFor="password">Password: </label>
+            {/* Password */}
+            <div className="form-group row text-left">
+              <label htmlFor="password" className="col-sm-4 col-form-label">Password: </label>
+              <div className="form-group col-sm-8">
                 <input type="password" id="password" className="form-control" placeholder="Password" required
                   pattern=".{7,}" aria-describedby="defaultRegisterFormPasswordHelpBlock" onChange={this.handleChange} />
                 <small id="defaultRegisterFormPasswordHelpBlock" className="form-text text-muted mb-4">
                   At least 7 characters
                 </small>
               </div>
+            </div>
 
-              <div class="form-group col-md-6">
 
-                <label htmlFor="confirmPassword">Confirm Password: </label>
+            <div className="form-group row text-left">
+              <label htmlFor="confirmPassword" className="col-sm-4 col-form-label">Confirm Password: </label>
+              <div className="col-sm-8">
                 <input type="password" id="confirmPassword" className="form-control" placeholder="Confirm Password" required
                   pattern=".{7,}" aria-describedby="defaultRegisterFormPasswordHelpBlock" onChange={this.handleChange} />
-                <br />
-
                 <label htmlFor="errror" className="text-danger">
                   {errors ? errors : ''}
                 </label>
-
               </div>
-              {/* Sign up button */}
-              <button className="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
-
             </div>
+
+            {/* Sign up button */}
+            <button className="btn btn-success btn-lg" type="submit">Sign Up</button>
+
           </form>
         </div>
 

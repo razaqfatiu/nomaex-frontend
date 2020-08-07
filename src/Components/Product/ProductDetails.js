@@ -5,12 +5,13 @@ import './Product.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 // import { saveState, loadState } from '../../Store/localStorage';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ProductUpdate from './ProductUpdate';
 import Loading from '../layout/Loading';
-import { getOneProduct } from '../../Store/actions/productAction';
+import { getOneProduct, deleteAProduct } from '../../Store/actions/productAction';
 import checkAuth from '../Helpers/check-auth';
 import { addItemsToCart } from '../../Store/actions/cartAction';
+
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class ProductDetails extends Component {
     this.state = {
       productId: null,
       quantity: 1,
-      active: false
+      active: false,
+      isDeleted: false
     }
     // this.handleOnChange = this.handleOnChange.bind(this)
     // this.handleToggle = this.handleToggle.bind(this)
@@ -47,18 +49,25 @@ class ProductDetails extends Component {
     this.state.setIndex(selectedIndex);
   };
 
-  render() {
-    // const { index, setIndex } = this.state
-    // if (!this.props.product.loading) console.log(this.props.product)
-    const { product: productState } = this.props
-    const { products: product, productError } = productState
-    console.log(productState)
+  handleDelete = () => {
+    console.log('test')
+    this.props.deleteAProduct(this.props.productId)
+    this.setState({ isDeleted: true })
+    return this.props.history.goBack()
+    // < Redirect to = "/" />
+  }
 
+  render() {
+    const { product: productState, history } = this.props
+    const { products: product, productError } = productState
+    const formatPrice = (number) => new Intl.NumberFormat('en-IN').format(number)
 
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
 
-    if (product.length === 0) return <Loading />
+    // if (this.state.isDeleted)
+    if (productError && productError.status === 404) return <h3 className="text-center">{productError.data.getOneProduct}</h3>
+    if (product && product.length === 0) return <Loading />
 
     return (
       <Container className="product-details-container">
@@ -73,7 +82,7 @@ class ProductDetails extends Component {
                   <img
                     className="d-block w-100"
                     src={productImage.imageUrl}
-                    alt={`Product ${productImage.imageId}re23782rhshf834fejsew9e image`}
+                    alt={`Product ${productImage.imageId}re23782rhshf834fejsew9e JPG`}
                   />
                 </Carousel.Item>
 
@@ -88,7 +97,13 @@ class ProductDetails extends Component {
 
             <div className="m-3">
               <span className="label text-left">Product Price: </span>
-              <span><span>&#8358;</span>{`${product[0].productPrice}`}</span>
+              <span><span>&#8358;</span>{(product[0].productDiscount == 0) ? formatPrice(product[0].productPrice) : `${formatPrice(product[0].productPrice * product[0].productDiscount)}`}</span>  &nbsp;&nbsp;&nbsp;
+              <strike><span><span>&#8358;</span>{`${formatPrice(product[0].productPrice)}`}</span></strike>
+
+            </div>
+            <div className="m-3">
+              <span className="label text-left">Product Discount: </span>
+              <span>{`${product[0].productDiscount * 100}`}<span>&#37;</span></span>
             </div>
             <div className="m-3">
               <span className="label text-left">Product Quantity: </span>
@@ -102,7 +117,7 @@ class ProductDetails extends Component {
 
             <div className="m-3">
               <span className="label text-left">Shipping Cost: </span>
-              <span>{product[0].ProductShipping.cost}</span>
+              <span><span>&#8358;</span> {formatPrice(product[0].ProductShipping.cost)}</span>
             </div>
 
             <div className="m-3">
@@ -131,7 +146,7 @@ class ProductDetails extends Component {
               <Button variant="success" onClick={this.handleToggle} >
                 Edit
               </Button>
-              <Button variant="danger">
+              <Button variant="danger" onClick={this.handleDelete}>
                 Delete
               </Button>
             </ButtonGroup>
@@ -149,10 +164,7 @@ class ProductDetails extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
-  // const products = state.product.products;
-  // const product = products.filter((prod) => prod.productId === id)[0]
   return {
-    // product,
     product: state.product,
     productId: id,
   }
@@ -161,8 +173,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getOneProduct: (pId) => dispatch(getOneProduct(pId)),
-    addItemsToCart: (item) => dispatch(addItemsToCart(item))
-
+    addItemsToCart: (item) => dispatch(addItemsToCart(item)),
+    deleteAProduct: (pId) => dispatch(deleteAProduct(pId))
   }
 }
 

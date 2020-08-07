@@ -7,7 +7,7 @@ const initState = {
 const categoryReducer = (state = initState, action) => {
   switch (action.type) {
     case 'GET_CATEGORIES_SUCCESS':
-      console.log('gotten categories')
+      // console.log('gotten categories')
       return {
         ...state,
         categories: action.categories,
@@ -16,7 +16,7 @@ const categoryReducer = (state = initState, action) => {
       }
 
     case 'GET_CATEGORIES_FAILURE':
-      console.log('failed to get categories')
+      // console.log('failed to get categories')
       return {
         ...state,
         categoryError: action.error.response

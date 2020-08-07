@@ -22,8 +22,9 @@ export const createNewProduct = (credentials) => {
 export const getAllProducts = () => {
   return async (dispatch, getState) => {
     try {
+      let loading = getState().product.loading = true
       const getAllProducts = await axios.get(`${url}/api/v1/products`, { withCredentials: true })
-      let loading = getState().product.loading = false
+       loading = getState().product.loading = false
       // console.log(getCategories.data.getCategories)
       dispatch({
         type: 'GET_ALL_PRODUCTS_SUCCESS',
@@ -80,10 +81,25 @@ export const updateAProduct = (credentials, productId) => {
       const updateAProduct = await axios.patch(`${url}/api/v1/product/${productId}`, credentials, { withCredentials: true })
       const getOneProduct = await axios.get(`${url}/api/v1/products/${productId}`)
       loading = getState().product.loading = false
-      dispatch({ type: 'UPDATED_PRODUCT_SUCCESS', product: getOneProduct.data.getOneProduct, loading })
+      dispatch({ type: 'UPDATE_PRODUCT_SUCCESS', product: getOneProduct.data.getOneProduct, loading })
     }
     catch (error) {
-      dispatch({ type: 'UPDATED_PRODUCT_FAILURE', error })
+      dispatch({ type: 'UPDATE_PRODUCT_FAILURE', error })
+    }
+  }
+}
+
+export const deleteAProduct = (productId) => {
+  return async (dispatch, getState) => {
+    try {
+      let loading = getState().product.loading = true;
+      const deleteAProduct = await axios.delete(`${url}/api/v1/product/${productId}`, { withCredentials: true })
+      loading = getState().product.loading = false
+      // this.props.history.push('/')
+      dispatch({ type: 'DELETE_UPDATED_PRODUCT_SUCCESS', product: deleteAProduct.data.response, loading })
+    }
+    catch (error) {
+      dispatch({ type: 'DELETE_PRODUCT_FAILURE', error })
     }
   }
 }

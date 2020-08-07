@@ -10,7 +10,7 @@ headers.append('Accept', 'application/json');
 export const signUp = (credentials) => {
     return async (dispatch, getState) => {
         try {
-            const signUpResponse = await axios.post(`${url}/api/v1/dev-create-admin`, credentials, { withCredentials: true })
+            const signUpResponse = await axios.post(`${url}/api/v1/signup`, credentials, { withCredentials: true })
             dispatch({ type: 'SIGNUP_SUCCESS', payload: signUpResponse })
         }
         catch (error) {

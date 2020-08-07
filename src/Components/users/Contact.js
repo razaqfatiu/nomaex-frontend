@@ -17,7 +17,7 @@ export default class Contact extends Component {
                 <FontAwesomeIcon icon={faEnvelope} className="mr-2 contact-icons" />support@nomeax.com
               </li>
               <li>
-              <FontAwesomeIcon icon={faPhone} className="mr-2 contact-icons" />+48 XXXXX
+              <FontAwesomeIcon icon={faPhone} className="mr-2 contact-icons" />+2348142396523
             </li>
               <li>
               <FontAwesomeIcon icon={faHome} className="mr-2 contact-icons" />Lagos, Nigeria

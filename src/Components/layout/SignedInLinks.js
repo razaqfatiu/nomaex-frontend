@@ -8,23 +8,24 @@ class SignedInLinks extends Component {
     super(props)
   }
 
-  handleSignOut() {
-    this.props.signOut()
-  }
-  render() {
-    const { prop, cart } = this.props
-    console.log(cart)
+  handleSignOut = () => {
+  this.props.signOut()
+}
+render() {
+  const { prop, cart } = this.props
+  // console.log(cart)
 
-    return (
-      <Nav className="ml-auto" navbar >
-        <Nav.Link className="text-white" href="/">Home</Nav.Link>
-        <Nav.Link className="text-white" href="/categories/contact">Contact Us</Nav.Link>
-        <Nav.Link className="text-white" href="#">About Us</Nav.Link>
-        <Nav.Link className="text-white" href="#"><i className="fa fa-shopping-cart"></i> <span className="badge badge-light">0</span></Nav.Link>
-        <Nav.Link className="text-white" onClick={prop.signOut} href="#">Log Out</Nav.Link>
-      </Nav>
-    )
-  }
+  return (
+    <Nav className="ml-auto" navbar >
+      <Nav.Link className="text-white" href="/">Home</Nav.Link>
+      <Nav.Link className="text-white" href="/contact">Contact Us</Nav.Link>
+      <Nav.Link className="text-white" href="/recent-orders">Orders</Nav.Link>
+      <Nav.Link className="text-white" href="/cart">Cart <i className="fa fa-shopping-cart"></i> </Nav.Link>
+      {/* <span className="badge badge-light">0</span> */}
+      <Nav.Link className="text-white" onClick={prop.signOut} href="#">Log Out</Nav.Link>
+    </Nav>
+  )
+}
 }
 
 const mapStateToProps = (state) => {

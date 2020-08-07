@@ -6,9 +6,7 @@ import ForgotPassword from './Components/auth/ForgotPassword';
 import ResetPassword from './Components/auth/ResetPassword';
 
 import NavBar from './Components/layout/Navbar';
-import ProductUpload from './Components/Admin/ProductUpload';
-// import Home from './Components/Admin/Home'
-// import Homes from './Components/users/home'
+import ProductUpload from './Components/Product/ProductUpload';
 import './App.scss'
 import Footer from './Components/layout/footer';
 import Fishery from './Components/Categories/Fishery';
@@ -16,13 +14,13 @@ import Poultry from './Components/Categories/Poultry';
 import Fruit from './Components/Categories/Fruit';
 import Checkout from './Components/users/Checkout';
 import Contact from './Components/users/Contact';
-import Product from './Components/Admin/Product';
+import Product from './Components/Product/Product';
 import SideBar from './Components/layout/Sidebar';
 // import classNames from "classnames";
 import { Container } from "react-bootstrap";
 import Loading from './Components/layout/Loading';
-import ProductDetails from './Components/Admin/ProductDetails';
-// import ProductUpdate from './Components/Admin/ProductUpdate';
+import ProductDetails from './Components/Product/ProductDetails';
+// import ProductUpdate from './Components/Product/ProductUpdate';
 import SentPasswordResetLink from './Components/auth/SentVerificationLink';
 import NotFound404 from './Components/Custom/NotFound404';
 import LiveStock from './Components/Categories/LiveStock';
@@ -34,6 +32,7 @@ import Service from './Components/Categories/Service';
 import Others from './Components/Categories/Others';
 import ProtectedRoute from './Components/Helpers/ProtectedRoute';
 import Cart from './Components/Cart/Cart';
+import AdminProtectedRoute from './Components/Helpers/AdminProtectedRoute';
 
 
 class App extends Component {
@@ -108,8 +107,8 @@ class App extends Component {
               <Route path="/categories/vegetables" component={Vegetables} />
               <Route path="/categories/others" component={Others} />
               <Route path="/loading" component={Loading} />
-              <Route path="/checkout" component={Checkout} />
-              <Route path="/cart" component={Cart} />
+              <ProtectedRoute path="/checkout" component={Checkout} />
+              <ProtectedRoute path="/cart" component={Cart} />
 
 
               {/* <Route path="/admin" component={Home} /> */}
@@ -118,7 +117,7 @@ class App extends Component {
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:token" component={ResetPassword} />
 
-              <ProtectedRoute path="/admin/product-upload" component={ProductUpload} />
+              <AdminProtectedRoute path="/admin/product-upload" component={ProductUpload} />
 
 
               <Route path="/password-recovery-message" component={SentPasswordResetLink} />
@@ -126,8 +125,6 @@ class App extends Component {
               {/* <Route path="/admin/product-update/:id" component={ProductUpdate} /> */}
               <Route path="/" exact component={Product} />
               <Route path="*" component={NotFound404} />
-
-
 
             </Switch>
             <Footer />

@@ -17,8 +17,6 @@ import {
   faCat
 
 } from "@fortawesome/free-solid-svg-icons";
-import { } from '@fortawesome/fontawesome-svg-core'
-import { } from '@fortawesome/react-fontawesome'
 
 import { Nav, Button } from "react-bootstrap";
 import classNames from "classnames";

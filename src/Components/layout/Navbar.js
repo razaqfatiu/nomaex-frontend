@@ -19,25 +19,17 @@ class NavBar extends Component {
     super(props)
     this.state = {
       isAuthenticated: false,
-      carts: []
+      carts: [],
+      no: this.props.cart.carts.length
     }
   }
 
   componentWillMount() {
-    this.props.getUserCartItems()
-    // if (checkAuth.isAuth()) {
-    //   this.setState({ isAuthenticated: true })
-    // if (this.props.auth.payload.status === 200) {
-    //   this.setState({ isAuthenticated: true })
-    // }
-    // }
-  }
-  componentWillUpdate() {
-
-
+    this.setState({ no: this.props.cart.carts.length })
   }
 
   componentDidMount() {
+    if (checkAuth.isAuth()) this.props.getUserCartItems()
     this.setState({ isAuthenticated: checkAuth.isAuth() })
   }
 
@@ -57,9 +49,10 @@ class NavBar extends Component {
         </Button>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          {(auth.isLoggedIn || (isAuth && isAdmin)) ? <AdminSignedInLinks prop={this.props} />
-            : (isAuth) ? <SignedInLinks prop={this.props} />
-            : <SignedOutLink />}
+
+          {(auth.isLoggedIn || isAuth) ? <SignedInLinks prop={this.props} /> :
+            (auth.isLoggedIn || (isAuth && isAdmin)) ? <AdminSignedInLinks prop={this.props} />
+              : <SignedOutLink />}
         </Navbar.Collapse>
       </Navbar>
     );
