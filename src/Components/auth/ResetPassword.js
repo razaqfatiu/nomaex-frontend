@@ -35,7 +35,6 @@ class ResetPassword extends Component {
 
   render() {
     const { auth } = this.props
-    console.log(auth)
     if (auth.payload.status === 201) {
       document.getElementById("reset-password-form").reset();
       return <Redirect to="/signin" />

@@ -2,6 +2,7 @@ const initState = {
   cartError: null,
   loading: true,
   carts: [],
+  order: null
 }
 
 const productReducer = (state = initState, action) => {
@@ -43,6 +44,21 @@ const productReducer = (state = initState, action) => {
         cartError: null
       };
     case 'GET_USER_CART_ITEMS_FAILURE':
+      // console.log('GET_USER_CART_ITEMS_failed');
+      return {
+        ...state,
+        cartError: action.error.response
+      };
+    case 'INITIALIZE_ORDER_SUCCESS':
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
+      return {
+        ...state,
+        carts: action.cart,
+        order: action.order,
+        loading: action.loading,
+        cartError: null
+      };
+    case 'INITIALIZE_ORDER_FAILURE':
       // console.log('GET_USER_CART_ITEMS_failed');
       return {
         ...state,

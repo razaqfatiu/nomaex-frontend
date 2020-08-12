@@ -49,8 +49,7 @@ class NavBar extends Component {
         </Button>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-
-          {(auth.isLoggedIn || isAuth) ? <SignedInLinks prop={this.props} /> :
+          {(auth.isLoggedIn || (!isAdmin && isAuth)) ? <SignedInLinks prop={this.props} /> :
             (auth.isLoggedIn || (isAuth && isAdmin)) ? <AdminSignedInLinks prop={this.props} />
               : <SignedOutLink />}
         </Navbar.Collapse>

@@ -46,8 +46,7 @@ class SignUp extends Component {
   render() {
     const { auth, authError } = this.props;
     const { errors } = this.state
-    console.log(auth);
-    if (auth.payload.status === 201) return <Redirect to="/" />
+    if (auth.payload.status === 201) return <Redirect to="/signin" />
 
     return (
       <div className="signin">

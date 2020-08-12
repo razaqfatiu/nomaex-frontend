@@ -11,6 +11,8 @@ import Loading from '../layout/Loading';
 import { getOneProduct, deleteAProduct } from '../../Store/actions/productAction';
 import checkAuth from '../Helpers/check-auth';
 import { addItemsToCart } from '../../Store/actions/cartAction';
+import { formatCurrency } from '../Helpers/currency-formatter';
+import { calcDiscountPrice } from '../Helpers/price-converters';
 
 
 class ProductDetails extends Component {
@@ -60,7 +62,6 @@ class ProductDetails extends Component {
   render() {
     const { product: productState, history } = this.props
     const { products: product, productError } = productState
-    const formatPrice = (number) => new Intl.NumberFormat('en-IN').format(number)
 
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
@@ -97,13 +98,16 @@ class ProductDetails extends Component {
 
             <div className="m-3">
               <span className="label text-left">Product Price: </span>
-              <span><span>&#8358;</span>{(product[0].productDiscount == 0) ? formatPrice(product[0].productPrice) : `${formatPrice(product[0].productPrice * product[0].productDiscount)}`}</span>  &nbsp;&nbsp;&nbsp;
-              <strike><span><span>&#8358;</span>{`${formatPrice(product[0].productPrice)}`}</span></strike>
+              <span>{formatCurrency(calcDiscountPrice(product[0].productPrice, product[0].productDiscount, 1))}
+              </span>  &nbsp;&nbsp;
+              <strike><span>
+                {`${formatCurrency(product[0].productPrice)}`}
+              </span></strike>
 
             </div>
             <div className="m-3">
               <span className="label text-left">Product Discount: </span>
-              <span>{`${product[0].productDiscount * 100}`}<span>&#37;</span></span>
+              <span>{`${product[0].productDiscount}`}<span>&#37;</span></span>
             </div>
             <div className="m-3">
               <span className="label text-left">Product Quantity: </span>
@@ -117,7 +121,7 @@ class ProductDetails extends Component {
 
             <div className="m-3">
               <span className="label text-left">Shipping Cost: </span>
-              <span><span>&#8358;</span> {formatPrice(product[0].ProductShipping.cost)}</span>
+              <span> {formatCurrency(product[0].ProductShipping.cost)}</span>
             </div>
 
             <div className="m-3">

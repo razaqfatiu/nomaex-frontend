@@ -84,7 +84,6 @@ class ProductUpload extends Component {
       <div className="main">
         <h1>UPLOAD PRODUCT</h1>
         <hr />
-        <h5 className="text-success">{message ? message : ''}</h5>
         <form className="text-left border rounded border-light bg-light" id="productForm" onSubmit={this.handleSubmit} encType="multipart/form-data">
 
           <div className="form-group row">
@@ -174,8 +173,9 @@ class ProductUpload extends Component {
 
           <div className="text-center">
             <button className="btn btn-success btn-lg my-4" type="submit" id="upload">Upload</button>
-
           </div>
+
+          <h5 className="text-success mb-5 product-message">{message ? message : ''}</h5>
 
         </form>
 

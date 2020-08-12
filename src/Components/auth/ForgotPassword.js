@@ -25,7 +25,6 @@ class ForgotPassword extends Component {
 
     render() {
         const { auth, authError } = this.props
-        console.log(auth)
         if (auth.payload.status === 200) return <Redirect to="/password-recovery-message" />
 
         return (

@@ -6,6 +6,8 @@ import { Link, Redirect } from 'react-router-dom';
 import './cart.scss'
 import checkAuth from '../Helpers/check-auth';
 import { calcDiscount, calcDiscountPrice } from '../Helpers/price-converters';
+import { formatCurrency } from '../Helpers/currency-formatter'
+import { initializeOrder } from '../../Store/actions/cartAction';
 
 
 class Cart extends Component {
@@ -14,8 +16,7 @@ class Cart extends Component {
     super(props)
     this.state = {
       deletedMsg: '',
-      carts: this.props.cart,
-      loading: this.props.loading
+      total: 0
     }
   }
 
@@ -28,15 +29,24 @@ class Cart extends Component {
   handleOnClick = (e) => {
     const cartId = e.target.getAttribute('data-key')
     this.props.deleteCartItem(cartId)
-    // return this.props.history.push('/cart')
+  }
+
+  handleCheckout = (e) => {
+    const amount = e.target.getAttribute('data-key')
+    this.setState({ total: amount })
+    this.props.initializeOrder({ amount })
   }
 
   render() {
-    const { carts, loading } = this.props.cart
+    const { carts, loading, order } = this.props.cart
     let total = 0
+
     let shippingTotal = 0
     let totalDiscount = 0
-    const formatCurrency = (number) => new Intl.NumberFormat('en-IN').format(number)
+    console.log(this.props.cart)
+
+    if (order && order.status === 201) return <Redirect to='/checkout'/>
+    if (carts.length === 0) return <h2 className="text-center">Add Items To cart</h2>
     if (loading) return <Loading />
 
     return (
@@ -52,7 +62,6 @@ class Cart extends Component {
             {
               carts && carts.map(cart => {
                 total += calcDiscountPrice(cart.Product.productPrice, cart.Product.productDiscount, cart.quantity)
-                // total += ((parseInt(cart.Product.productPrice) * parseInt(cart.Product.productDiscount)) * parseInt(cart.quantity))
                 shippingTotal += parseInt(cart.Product.ProductShipping.cost);
                 totalDiscount += parseFloat(cart.Product.productDiscount) * parseInt(cart.Product.productPrice)
                 return (
@@ -69,13 +78,13 @@ class Cart extends Component {
                       </div>
                     </Link>
                     <span className="text-muted">
-                      <span>&#8358;</span>
-                      &nbsp;
-                       {formatCurrency(calcDiscountPrice(cart.Product.productPrice, cart.Product.productDiscount, cart.quantity))}
-                      
+                      {/* <span>&#8358;</span>
+                      &nbsp; */}
+                      {formatCurrency(calcDiscountPrice(cart.Product.productPrice, cart.Product.productDiscount, cart.quantity))}
+
                       <br />
                       <button className="btn btn-outline-warning" data-key={cart.cartId} onClick={this.handleOnClick}>
-                        {/* <FontAwesomeIcon icon={faMinusCircle} pull="right" size="lg" color="red" /> */} Remove
+                        Remove
                       </button>
                     </span>
 
@@ -86,20 +95,27 @@ class Cart extends Component {
 
             <li className="list-group-item d-flex justify-content-between">
               <span>Total (NGN)</span>
-              <strong>&#8358; {formatCurrency(total)}</strong>
+              <strong>{formatCurrency(total)}</strong>
             </li>
-            
+
             <li className="list-group-item d-flex justify-content-between">
               <span>Shipping Total (NGN)</span>
-              <strong>&#8358; {formatCurrency(shippingTotal)}</strong>
+              <strong>{formatCurrency(shippingTotal)}</strong>
             </li>
             <li className="list-group-item d-flex justify-content-between">
               <span>Gross Total (NGN)</span>
-              <strong>&#8358; {formatCurrency(total + shippingTotal)}</strong>
+              <strong>{formatCurrency(total + shippingTotal)}</strong>
             </li>
+
           </ul>
 
-          <button type="submit" className="btn btn-lg  btn-success btn-block text-center mt-5 mb-5">Checkout</button>
+
+
+          <button type="submit" className="btn btn-lg  btn-success btn-block text-center mt-5 mb-5"
+            data-key={total + shippingTotal}
+            onClick={this.handleCheckout} >
+            Checkout
+          </button>
 
 
         </div>
@@ -118,7 +134,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUserCartItems: () => dispatch(getUserCartItems()),
-    deleteCartItem: (itm) => dispatch(deleteCartItem(itm))
+    deleteCartItem: (itm) => dispatch(deleteCartItem(itm)),
+    initializeOrder: (cred) => dispatch(initializeOrder(cred))
   }
 }
 

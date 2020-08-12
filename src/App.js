@@ -12,7 +12,7 @@ import Footer from './Components/layout/footer';
 import Fishery from './Components/Categories/Fishery';
 import Poultry from './Components/Categories/Poultry';
 import Fruit from './Components/Categories/Fruit';
-import Checkout from './Components/users/Checkout';
+// import Checkout from './Components/users/Checkout';
 import Contact from './Components/users/Contact';
 import Product from './Components/Product/Product';
 import SideBar from './Components/layout/Sidebar';
@@ -33,6 +33,7 @@ import Others from './Components/Categories/Others';
 import ProtectedRoute from './Components/Helpers/ProtectedRoute';
 import Cart from './Components/Cart/Cart';
 import AdminProtectedRoute from './Components/Helpers/AdminProtectedRoute';
+import Checkout from './Components/Checkout/Checkout';
 
 
 class App extends Component {
@@ -109,6 +110,7 @@ class App extends Component {
               <Route path="/loading" component={Loading} />
               <ProtectedRoute path="/checkout" component={Checkout} />
               <ProtectedRoute path="/cart" component={Cart} />
+              <ProtectedRoute path="/checkout" component={Checkout} />
 
 
               {/* <Route path="/admin" component={Home} /> */}
