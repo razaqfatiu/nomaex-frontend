@@ -47,7 +47,7 @@ class Product extends Component {
       <Container fluid className="product-div">
         <h2 className="text-center">ALL PRODUCTS</h2>
         <hr />
-        <div className="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-left">
           {products && products.map((product) => (
             <Card key={product.productId} className="text-center mb-3 card col-sm-6  col-md-4  col-lg-3  col-xl-2  d-flex align-items-stretch" style={{ width: '15rem', height: '25rem' }}>
               {product && product.Product_images.map((Product_image, i) => (

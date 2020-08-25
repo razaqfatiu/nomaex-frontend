@@ -7,6 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom'
 import '../Product/Product.scss'
+import { addItemsToCart } from '../../Store/actions/cartAction';
+import { formatCurrency } from '../Helpers/currency-formatter';
+import { calcDiscountPrice } from '../Helpers/price-converters';
+
 
 class Service extends Component {
 
@@ -21,60 +25,61 @@ class Service extends Component {
     if (product.loading) return <Loading />
 
     return (
-      <Container className="product-div">
+      <Container fluid className="product-div">
         <h2 className="text-center" >SERVICES</h2>
         <hr />
-        <Row>
-          {/* className="overflow-autos" */}
-          <CardGroup className="justify-content-center ">
-            {products && products.map((product) => (
-              <Col className="mb-4" xs={12} sm={12} md={12} lg={4}>
-                <Card className="text-center card" style={{ width: '20rem', height: '30rem' }}>
-                  {product && product.Product_images.map((Product_image, i) => (
-                    (Product_image && i === 0) ? <Card.Img key={Product_image.imageId} className="p-2" variant="top" src={Product_image.imageUrl} alt="Card image cap" height="200" /> : ''))}
-                  {/* {product.Product_images.map(Product_image => ((Product_image) ? <Card.Img key={Product_image.imageId} className="p-2" variant="top" src={Product_image.imageUrl} alt="Card image cap" /> : ''))} */}
+        <div className="row d-flex justify-content-left">
+          {products && products.map((product) => (
+            <Card key={product.productId} className="text-center mb-3 card col-sm-6  col-md-4  col-lg-3  col-xl-2  d-flex align-items-stretch" style={{ width: '15rem', height: '25rem' }}>
+              {product && product.Product_images.map((Product_image, i) => (
+                (Product_image && i === 0) ? <Card.Img key={Product_image.imageId} className="p-2" variant="top" src={Product_image.imageUrl} alt="Card image cap" height="150" /> : ''))}
 
-                  <Card.Body>
-                    <Link key={product.productId} to={`/products/${product.productId}`}>
+              <Card.Body>
+                <Link to={`/products/${product.productId}`}>
+                  <Card.Title className="product-text-size">
+                    {/* {formatCurrency(product.productPrice)}  */}
+                    {formatCurrency(calcDiscountPrice(product.productPrice, product.productDiscount, 1))}
+                    &nbsp; &nbsp;
+                    <strike><span>
+                      {formatCurrency(product.productPrice)}
+                    </span></strike>
+                  </Card.Title>
+                  <Card.Text className="text-center product-text-size">
+                    {/* {product.productName} */}
+                    {(product['productDescription'].length > 95) ? `${product['productDescription'].slice(0, 60)}...` : product['productDescription'].slice(0, 5)}
+                  </Card.Text>
+                </Link>
+                <br />
+                {/* <div id='hideme-container'>
+                  <div id='hideme'>
+                    {(message) ? 'Added' : ''}
+                    </div>
+                </div> */}
+                <Button variant="success" data-key={product.productId} onClick={this.handleAddToCart}>
+                  <FontAwesomeIcon icon={faCartArrowDown} />
+                  {' '} Add to Cart {' '}
+                </Button>
 
-                      <Card.Title>
-                        <span>&#8358;</span>
-                        {' '}
-                        {product.productPrice}
-                      </Card.Title>
-                      <Card.Text>
-                        {(product['productDescription'].length > 95) ? `${product['productDescription'].slice(0, 90)} ...` : product['productDescription'].slice(0, 5)}
-                      </Card.Text>
-                    </Link>
 
-                    <br />
-                    <Button variant="success">
-                      <FontAwesomeIcon icon={faCartArrowDown} />
-                      {' '} Add to Cart {' '}
-                      <span className="badge badge-light">{0}</span>
-                    </Button>
-
-
-                    {/* <Card.Link className="bg-danger p-2 rounded" href="#">Edit Product</Card.Link>
-                        <Card.Link className="bg-success p-2 rounded" href="#">Delete Product</Card.Link> */}
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-
-          </CardGroup>
-        </Row>
+                <br />
+                {/* <small className="text-warning">{(this.state.msg && this.state.productId === product.productId) ? this.state.msg : ''}</small> */}
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </Container>
     )
   }
 }
-// }
-// }
+
+
+
 
 const mapStateToProps = (state) => {
   return {
     product: state.product,
-    productError: state.product.productError
+    productError: state.product.productError,
+    cart: state.cart
     // ProductImages: state
   }
 }
@@ -82,9 +87,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProductsByCategory: (categoryId) => dispatch(getProductsByCategory(categoryId)),
+    addItemsToCart: (item) => dispatch(addItemsToCart(item))
   }
 }
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Service)

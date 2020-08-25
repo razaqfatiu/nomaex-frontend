@@ -21,10 +21,12 @@ export default class Footer extends Component {
                   <a href="https://web.facebook.com/nomaex/?_rdc=1&_rdr"><FontAwesomeIcon icon={faFacebookF} className="white-text mr-md-5 mr-3 footer-element" color="white" size="lg" /></a>
                 </li>
                 <li>
-                  <FontAwesomeIcon icon={faTwitter} className="white-text mr-md-5 mr-3 footer-element" color="white" size="lg" />
+                 <FontAwesomeIcon icon={faTwitter} className="white-text mr-md-5 mr-3 footer-element" color="white" size="lg" />
+                 
                 </li>
                 <li>
-                  <FontAwesomeIcon icon={faInstagram} className="white-text mr-md-5 mr-3 footer-element" color="white" />
+                   <a href="https://Instagram.com/noma_ex" ><FontAwesomeIcon icon={faInstagram} className="white-text mr-md-5 mr-3 footer-element" color="white" />
+                    </a>
                 </li>
               </ul>
             </Col>
