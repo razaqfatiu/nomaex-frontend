@@ -44,11 +44,13 @@ export const getUserCartItems = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().cart.loading = true;
+      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: true })
       const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: true })
       loading = getState().cart.loading = false
       dispatch({
         type: 'GET_USER_CART_ITEMS_SUCCESS',
         cart: getUserCartItems.data.getUserCart,
+        order: getNewOrder.data.getNewUserOrder,
         loading
       })
     }
@@ -68,7 +70,7 @@ export const initializeOrder = (cred) => {
       dispatch({
         type: 'INITIALIZE_ORDER_SUCCESS',
         cart: getUserCartItems.data.getUserCart,
-        order: createOrder,
+        order: createOrder.data.data,
         loading
       })
     }

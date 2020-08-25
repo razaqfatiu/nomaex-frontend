@@ -41,6 +41,7 @@ const productReducer = (state = initState, action) => {
         ...state,
         carts: action.cart,
         loading: action.loading,
+        order: action.order,
         cartError: null
       };
     case 'GET_USER_CART_ITEMS_FAILURE':

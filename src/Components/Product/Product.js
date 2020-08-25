@@ -10,6 +10,7 @@ import './Product.scss'
 import { addItemsToCart } from '../../Store/actions/cartAction';
 import checkAuth from '../Helpers/check-auth';
 import { formatCurrency } from '../Helpers/currency-formatter';
+import { calcDiscountPrice } from '../Helpers/price-converters';
 
 
 class Product extends Component {
@@ -18,7 +19,8 @@ class Product extends Component {
     this.state = {
       productId: null,
       quantity: 1,
-      msg: ''
+      msg: '',
+      message: ''
     }
   }
 
@@ -27,7 +29,7 @@ class Product extends Component {
   }
 
   handleAddToCart = (event) => {
-    if (!checkAuth.isAuth()) this.props.history.push('/signin')
+    if (!checkAuth.isAuth()) return this.props.history.push('/signin')
     const productId = event.target.getAttribute('data-key')
     const quantity = 1;
     const prod = { productId, quantity }
@@ -38,6 +40,7 @@ class Product extends Component {
   render() {
     const { product } = this.props
     const { products } = product
+    const { message } = this.state
     if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
     if (product && product.loading) return <Loading />
     return (
@@ -53,7 +56,8 @@ class Product extends Component {
               <Card.Body>
                 <Link to={`/products/${product.productId}`}>
                   <Card.Title className="product-text-size">
-                    {formatCurrency(product.productPrice)} 
+                    {/* {formatCurrency(product.productPrice)}  */}
+                    {formatCurrency(calcDiscountPrice(product.productPrice, product.productDiscount, 1))}
                     &nbsp; &nbsp;
                     <strike><span>
                       {formatCurrency(product.productPrice)}
@@ -65,10 +69,17 @@ class Product extends Component {
                   </Card.Text>
                 </Link>
                 <br />
+                {/* <div id='hideme-container'>
+                  <div id='hideme'>
+                    {(message) ? 'Added' : ''}
+                    </div>
+                </div> */}
                 <Button variant="success" data-key={product.productId} onClick={this.handleAddToCart}>
                   <FontAwesomeIcon icon={faCartArrowDown} />
                   {' '} Add to Cart {' '}
                 </Button>
+
+
                 <br />
                 {/* <small className="text-warning">{(this.state.msg && this.state.productId === product.productId) ? this.state.msg : ''}</small> */}
               </Card.Body>

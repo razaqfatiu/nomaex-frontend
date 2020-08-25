@@ -2,7 +2,8 @@
 const initState = {
   orderError: null,
   loading: true,
-  orders: {},
+  orders: [],
+  checkOut: null
 }
 
 const orderReducer = (state = initState, action) => {
@@ -21,7 +22,22 @@ const orderReducer = (state = initState, action) => {
         ...state,
         orderError: action.error.response
       };
-    case 'CHECKOUT_SUCCESS':
+    case 'CHECKOUT_PAY_SUCCESS':
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
+      return {
+        ...state,
+        orders: action.order,
+        loading: action.loading,
+        checkOut: action.checkOut,
+        orderError: null
+      };
+    case 'CHECKOUT_PAY_FAILURE':
+      // console.log('GET_USER_CART_ITEMS_failed');
+      return {
+        ...state,
+        orderError: action.error.response
+      };
+    case 'VERIFY_ORDER_CHECKOUT_SUCCESS':
       // console.log('GET_USER_CART_ITEMS_SUCCESS');
       return {
         ...state,
@@ -29,7 +45,35 @@ const orderReducer = (state = initState, action) => {
         loading: action.loading,
         orderError: null
       };
-    case 'CHECKOUT_FAILURE':
+    case 'VERIFY_ORDER_CHECKOUT_FAILURE':
+      // console.log('GET_USER_CART_ITEMS_failed');
+      return {
+        ...state,
+        orderError: action.error.response
+      };
+    case 'CANCEL_ORDER_SUCCESS':
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
+      return {
+        ...state,
+        orders: action.order,
+        loading: action.loading,
+        orderError: null
+      };
+    case 'CANCEL_ORDER_FAILURE':
+      // console.log('GET_USER_CART_ITEMS_failed');
+      return {
+        ...state,
+        orderError: action.error.response
+      };
+    case 'USER_RECENT_ORDER_SUCCESS':
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
+      return {
+        ...state,
+        orders: action.order,
+        loading: action.loading,
+        orderError: null
+      };
+    case 'USER_RECENT_ORDER_FAILURE':
       // console.log('GET_USER_CART_ITEMS_failed');
       return {
         ...state,

@@ -40,7 +40,7 @@ class SignIn extends Component {
 
 
   render() {
-    const { auth, authError, history } = this.props
+    const { auth, authError, } = this.props
     const { data } = auth.payload
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
@@ -48,10 +48,10 @@ class SignIn extends Component {
     if (auth.payload.status === 200) {
       return <Redirect to='/' />
     }
-    // if (isAuth) return <Redirect to='/' />
     if (authError !== null) {
-      error = authError.data.error
+      error = authError.data.error || authError.data.message
     }
+
     return (
       <div className="signin">
         <h1 className="welcome">WELCOME BACK TO NomaEx</h1>

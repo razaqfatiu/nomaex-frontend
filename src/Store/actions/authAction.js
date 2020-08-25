@@ -10,11 +10,25 @@ headers.append('Accept', 'application/json');
 export const signUp = (credentials) => {
     return async (dispatch, getState) => {
         try {
+            let loading = getState().auth.loading = true
             const signUpResponse = await axios.post(`${url}/api/v1/signup`, credentials, { withCredentials: true })
+            loading = getState().auth.loading = false
             dispatch({ type: 'SIGNUP_SUCCESS', payload: signUpResponse })
         }
         catch (error) {
             dispatch({ type: 'SIGNUP_FAILURE', error })
+        }
+    }
+}
+
+export const getUserInfo = () => {
+    return async (dispatch, getState) => {
+        try {
+            const getUser = await axios.get(`${url}/api/v1/user/me`, { withCredentials: true })
+            dispatch({ type: 'GET_USER_SUCCESS', payload: getUser.data.data })
+        }
+        catch (error) {
+            dispatch({ type: 'GET_USER_FAILURE', error })
         }
     }
 }
@@ -82,6 +96,20 @@ export const resetPassword = (credentials) => {
         }
         catch (error) {
             dispatch({ type: 'RESET_PASSWORD_FAILURE', error })
+        }
+    }
+}
+
+export const activateAccount = (credentials) => {
+    return async (dispatch, getState) => {
+        try {
+            let loading = getState().auth.loading = true
+            const activateAccount = await axios.patch(`${url}/api/v1/account/activation`, credentials, { withCredentials: true })
+            loading = getState().auth.loading = false
+            dispatch({ type: 'ACCOUNT_ACTIVATION_SUCCESS', payload: activateAccount.data, loading })
+        }
+        catch (error) {
+            dispatch({ type: 'ACCOUNT_ACTIVATION_FAILURE', error })
         }
     }
 }

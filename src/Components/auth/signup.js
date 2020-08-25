@@ -46,7 +46,8 @@ class SignUp extends Component {
   render() {
     const { auth, authError } = this.props;
     const { errors } = this.state
-    if (auth.payload.status === 201) return <Redirect to="/signin" />
+    let message
+    if (auth.payload.status === 201) message = "We've sent you an email in the provided email address, kindly follow to activate your account"
 
     return (
       <div className="signin">
@@ -59,6 +60,7 @@ class SignUp extends Component {
           <h3 className="p-3">Create User Account</h3>
 
           <form className="text-center border border-light p-5 rounded bg-light" onSubmit={this.handleSubmit}>
+            <p className="text-danger">{message ? message : ''}</p>
 
             <div className="form-group row text-left">
               {/* First name */}

@@ -34,6 +34,10 @@ import ProtectedRoute from './Components/Helpers/ProtectedRoute';
 import Cart from './Components/Cart/Cart';
 import AdminProtectedRoute from './Components/Helpers/AdminProtectedRoute';
 import Checkout from './Components/Checkout/Checkout';
+import Order from './Components/Order/Order';
+import VerifyCheckOut from './Components/Checkout/VerifyCheckOut';
+import Activate from './Components/auth/Activate';
+
 
 
 class App extends Component {
@@ -108,16 +112,20 @@ class App extends Component {
               <Route path="/categories/vegetables" component={Vegetables} />
               <Route path="/categories/others" component={Others} />
               <Route path="/loading" component={Loading} />
-              <ProtectedRoute path="/checkout" component={Checkout} />
+              <Route path="/contact" component={Contact} />
               <ProtectedRoute path="/cart" component={Cart} />
               <ProtectedRoute path="/checkout" component={Checkout} />
+              <ProtectedRoute path="/orders" component={Order} />
+              <ProtectedRoute path="/order/verify" component={VerifyCheckOut} />
 
 
               {/* <Route path="/admin" component={Home} /> */}
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
+              <Route path="/verify/user/:token" component={Activate} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:token" component={ResetPassword} />
+              <Route path="/activate/:token" component={ResetPassword} />
 
               <AdminProtectedRoute path="/admin/product-upload" component={ProductUpload} />
 

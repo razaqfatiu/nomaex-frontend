@@ -22,7 +22,8 @@ class ProductDetails extends Component {
       productId: null,
       quantity: 1,
       active: false,
-      isDeleted: false
+      isDeleted: false,
+      isAdded: false
     }
     // this.handleOnChange = this.handleOnChange.bind(this)
     // this.handleToggle = this.handleToggle.bind(this)
@@ -40,6 +41,7 @@ class ProductDetails extends Component {
   }
 
   handleAddToCart = (e) => {
+    this.setState({ isAdded: true })
     this.props.addItemsToCart(this.state)
   }
 
@@ -62,7 +64,7 @@ class ProductDetails extends Component {
   render() {
     const { product: productState, history } = this.props
     const { products: product, productError } = productState
-
+    const { isAdded } = this.state
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
 
@@ -138,10 +140,19 @@ class ProductDetails extends Component {
               <label htmlFor="Quantity" >Quantity: &nbsp;</label>
               <input type="number" min="1" max={product[0].unit} id="quantity" name="quantity" size="30" defaultValue="1" required onChange={this.handleOnChange} />
             </div>
-            <Button variant="success" className="m-5" onClick={this.handleAddToCart}>
-              <FontAwesomeIcon icon={faCartArrowDown} />
-              {' '} Add to Cart {' '}
-            </Button>
+
+            {/* <div> */}
+              
+              <Button variant="success" className="mt-5" onClick={this.handleAddToCart}>
+                <FontAwesomeIcon icon={faCartArrowDown} />
+                {' '} Add to Cart {' '}
+              </Button>
+              <div id='hideme-container' className="">
+                <div id='hideme' className="text-success">
+                  {(isAdded) ? 'Added' : ''}
+                </div>
+              </div>
+            {/* </div> */}
           </Col>
         </Row>
         {isAuth && isAdmin ? <div>
