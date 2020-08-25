@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { verifyOrderCheckOut } from '../../Store/actions/orderAction'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import queryString from 'query-string'
 
 
 class VerifyCheckOut extends Component {
