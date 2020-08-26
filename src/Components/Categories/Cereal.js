@@ -10,7 +10,6 @@ import '../Product/Product.scss'
 import checkAuth from '../Helpers/check-auth';
 import { addItemsToCart } from '../../Store/actions/cartAction';
 import { formatCurrency } from '../Helpers/currency-formatter';
-import { calcShippingDiscount } from '../Helpers/calculate-shipping-discount';
 import { calcDiscountPrice } from '../Helpers/price-converters';
 
 
@@ -21,12 +20,6 @@ class Cereal extends Component {
   }
 
   handleAddToCart = (event) => {
-    // if (!checkAuth.isAuth()) this.props.history.push('/signin')
-    // const productId = event.target.getAttribute('data-key')
-    // console.log(productId)
-    // const quantity = 1;
-    // const prod = { productId, quantity }
-    // this.props.addItemsToCart(prod)
     if (!checkAuth.isAuth()) return this.props.history.push('/signin')
     const productId = event.target.getAttribute('data-key')
     const quantity = 1;
@@ -36,10 +29,11 @@ class Cereal extends Component {
   }
 
   render() {
-    const { product, productError } = this.props
+    const { product } = this.props
     const { products } = product
-    if (productError !== null) return <h2 className="text-center">{productError.data.getProductsByCategory}</h2>
-    if (product.loading) return <Loading />
+    if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
+    if (product && product.loading) return <Loading />
+    
 
     return (
       <Container fluid className="product-div">

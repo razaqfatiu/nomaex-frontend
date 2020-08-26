@@ -79,6 +79,34 @@ const orderReducer = (state = initState, action) => {
         ...state,
         orderError: action.error.response
       };
+    case 'ADMIN_GET_ORDER_SUCCESS':
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
+      return {
+        ...state,
+        orders: action.order,
+        loading: action.loading,
+        orderError: null
+      };
+    case 'ADMIN_GET_ORDER_FAILURE':
+      // console.log('GET_USER_CART_ITEMS_failed');
+      return {
+        ...state,
+        orderError: action.error.response
+      };
+    case 'ORDER_SHIPPED_SUCCESS':
+      // console.log('GET_USER_CART_ITEMS_SUCCESS');
+      return {
+        ...state,
+        orders: action.order,
+        loading: action.loading,
+        orderError: null
+      };
+    case 'ORDER_SHIPPED_FAILURE':
+      // console.log('GET_USER_CART_ITEMS_failed');
+      return {
+        ...state,
+        orderError: action.error.response
+      };
 
     default:
       return state;

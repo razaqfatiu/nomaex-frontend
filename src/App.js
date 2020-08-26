@@ -37,6 +37,7 @@ import Checkout from './Components/Checkout/Checkout';
 import Order from './Components/Order/Order';
 import VerifyCheckOut from './Components/Checkout/VerifyCheckOut';
 import Activate from './Components/auth/Activate';
+import AdminOrderComp from './Components/Order/AdminOrderComp';
 
 
 
@@ -126,6 +127,7 @@ class App extends Component {
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:token" component={ResetPassword} />
               <Route path="/activate/:token" component={ResetPassword} />
+              <ProtectedRoute path="/admin/orders" component={AdminOrderComp} />
 
               <AdminProtectedRoute path="/admin/product-upload" component={ProductUpload} />
 

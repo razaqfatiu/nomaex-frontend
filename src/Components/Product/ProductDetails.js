@@ -54,7 +54,6 @@ class ProductDetails extends Component {
   };
 
   handleDelete = () => {
-    console.log('test')
     this.props.deleteAProduct(this.props.productId)
     this.setState({ isDeleted: true })
     return this.props.history.goBack()

@@ -20,7 +20,8 @@ class Product extends Component {
       productId: null,
       quantity: 1,
       msg: '',
-      message: ''
+      message: '',
+      added: false
     }
   }
 
@@ -34,13 +35,13 @@ class Product extends Component {
     const quantity = 1;
     const prod = { productId, quantity }
     event.target.style.background = '#094160'
+    this.setState({ added: true })
     return this.props.addItemsToCart(prod)
   }
 
   render() {
     const { product } = this.props
     const { products } = product
-    const { message } = this.state
     if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
     if (product && product.loading) return <Loading />
     return (

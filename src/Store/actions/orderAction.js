@@ -9,7 +9,7 @@ export const getInitializedOrderRequest = () => {
     try {
       let loading = getState().order.loading = true;
       const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: true })
-       loading =  getState().cart.loading = await false
+      loading = getState().cart.loading = await false
       dispatch({
         type: 'GET_NEW_ORDER_SUCCESS',
         order: getNewOrder.data.getNewUserOrder,
@@ -92,6 +92,47 @@ export const getUserOrders = () => {
     } catch (error) {
       dispatch({
         type: 'USER_RECENT_ORDER_FAILURE',
+        error
+      })
+    }
+  }
+}
+
+export const adminGetAllOrders = () => {
+  return async (dispatch, getState) => {
+    try {
+      let loading = getState().order.loading = true;
+      const adminGetOrders = await axios.get(`${url}/api/v1/admin/orders`, { withCredentials: true })
+      loading = getState().order.loading = false
+      dispatch({
+        type: 'ADMIN_GET_ORDER_SUCCESS',
+        order: adminGetOrders.data.data,
+        loading
+      })
+    } catch (error) {
+      dispatch({
+        type: 'ADMIN_GET_ORDER_FAILURE',
+        error
+      })
+    }
+  }
+}
+
+export const confirmOrderShipped = (orderId) => {
+  return async (dispatch, getState) => {
+    try {
+      let loading = getState().order.loading = true;
+      const adminGetOrders = await axios.get(`${url}/api/v1/admin/orders`, { withCredentials: true })
+      const orderShipped = await axios.get(`${url}/api/v1/admin/shipped/orders/${orderId}`, { withCredentials: true })
+      loading = getState().order.loading = false
+      dispatch({
+        type: 'ORDER_SHIPPED_SUCCESS',
+        order: adminGetOrders.data.data,
+        loading
+      })
+    } catch (error) {
+      dispatch({
+        type: 'ORDER_SHIPPED_FAILURE',
         error
       })
     }

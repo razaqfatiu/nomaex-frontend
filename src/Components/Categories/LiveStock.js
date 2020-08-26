@@ -18,10 +18,10 @@ class LiveStock extends Component {
   }
 
   render() {
-    const { product, productError } = this.props
+    const { product } = this.props
     const { products } = product
-    if (productError !== null) return <h2 className="text-center">{productError.data.getProductsByCategory}</h2>
-    if (product.loading) return <Loading />
+    if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
+    if (product && product.loading) return <Loading />
 
     return (
       <Container fluid className="product-div">
