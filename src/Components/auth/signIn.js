@@ -12,6 +12,7 @@ class SignIn extends Component {
     this.state = {
       email: '',
       password: '',
+      isLoggedIn: false
       // errors: {}
     };
   }
@@ -34,19 +35,23 @@ class SignIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.signIn(this.state)
+    this.setState({ isLoggedIn: true })
     e.target.reset()
     // this.handleValidation();
   };
 
 
   render() {
-    const { auth, authError, } = this.props
+    const { auth, authError, history } = this.props
     const { data } = auth.payload
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
     let error
-    if (auth.payload.status === 200) {
-      return <Redirect to='/' />
+    // if (auth.payload.status === 200) {
+    //   return <Redirect to='/' />
+    // }
+    if (this.state.isLoggedIn === true) {
+      return <Redirect to="/" />
     }
     if (authError !== null) {
       error = authError.data.error || authError.data.message
@@ -63,7 +68,7 @@ class SignIn extends Component {
             <p className="text-danger">{error ? error : ''}</p>
             {/* Email */}
             <div className="form-group row text-left">
-             <label htmlFor="email" className="col-sm-2 col-form-label" > <b> Email Address:</b></label>
+              <label htmlFor="email" className="col-sm-2 col-form-label" > <b> Email Address:</b></label>
               <div className="col-sm-10">
                 <input type="email" id="email" className="form-control mb-4" placeholder="E-mail" onChange={this.handleChange} required />
               </div>

@@ -118,6 +118,26 @@ export const adminGetAllOrders = () => {
   }
 }
 
+export const adminGetOneOrder = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      let loading = getState().order.loading = true;
+      const adminGetOneOrders = await axios.get(`${url}/api/v1/admin/orders/${id}`, { withCredentials: true })
+      loading = getState().order.loading = false
+      dispatch({
+        type: 'ADMIN_GET_ONE_ORDER_SUCCESS',
+        order: adminGetOneOrders.data.data,
+        loading
+      })
+    } catch (error) {
+      dispatch({
+        type: 'ADMIN_GET_ONE_ORDER_FAILURE',
+        error
+      })
+    }
+  }
+}
+
 export const confirmOrderShipped = (orderId) => {
   return async (dispatch, getState) => {
     try {

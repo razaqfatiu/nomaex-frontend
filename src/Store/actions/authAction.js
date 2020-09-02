@@ -61,7 +61,6 @@ export const signIn = (credentials) => {
                 saveAuthCred('user_auth_cred', { userId, exp, isAdministrator })
             }
 
-            // console.log(signInResponse, authenticate)
             loading = getState().auth.loading = false
             dispatch({ type: 'SIGNIN_SUCCESS', payload: authenticate, loading })
         }

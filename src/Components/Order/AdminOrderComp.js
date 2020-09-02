@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { adminGetAllOrders, confirmOrderShipped } from '../../Store/actions/orderAction'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class AdminOrderComp extends Component {
   constructor(props) {
@@ -40,16 +41,18 @@ class AdminOrderComp extends Component {
           <tbody>
             {
               orders && orders.map(order => (
-                <tr key={order.orderId}>
-                  <td>{order.orderId}</td>
-                  <td>{order.amount}</td>
-                  <td>{order.order_status.label}</td>
-                  <td>{order.User.firstName}</td>
-                  <td>{order.User.email}</td>
-                  <td>{order.User.address1 + ', ' + order.User.address2 + ', ' + order.User.state + '.'}</td>
-                  <td>{order.User.phoneNumber}</td>
-                  <td><button data-key={order.orderId} onClick={this.handleConfirmOrder} className="btn btn-success">Confirm</button></td>
-                </tr>
+                <Link to={`/admin/orders/${order.orderId}`} key={order.orderId}>
+                  <tr>
+                    <td>{order.orderId}</td>
+                    <td>{order.amount}</td>
+                    <td>{order.order_status.label}</td>
+                    <td>{order.User.firstName}</td>
+                    <td>{order.User.email}</td>
+                    <td>{order.User.address1 + ', ' + order.User.address2 + ', ' + order.User.state + '.'}</td>
+                    <td>{order.User.phoneNumber}</td>
+                    <td><button data-key={order.orderId} onClick={this.handleConfirmOrder} className="btn btn-success">Confirm</button></td>
+                  </tr>
+                </Link>
               ))
             }
 
