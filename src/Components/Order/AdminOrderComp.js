@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { adminGetAllOrders, confirmOrderShipped } from '../../Store/actions/orderAction'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class AdminOrderComp extends Component {
   constructor(props) {
@@ -19,6 +19,11 @@ class AdminOrderComp extends Component {
     const id = event.target.getAttribute('data-key')
     this.props.confirmOrderShipped(id)
     return this.setState({ confirm: true })
+  }
+  handleSelectOrder = (event) => {
+    const ref = event.target.getAttribute('data-href')
+    console.log(ref)
+    // return <Redirect to={ref} />
   }
 
   render() {
@@ -41,8 +46,7 @@ class AdminOrderComp extends Component {
           <tbody>
             {
               orders && orders.map(order => (
-                <Link to={`/admin/orders/${order.orderId}`} key={order.orderId}>
-                  <tr>
+                  <tr onClick={this.handleSelectOrder} data-href={`/admin/orders/${order.orderId}`} key={order.orderId}>
                     <td>{order.orderId}</td>
                     <td>{order.amount}</td>
                     <td>{order.order_status.label}</td>
@@ -50,9 +54,8 @@ class AdminOrderComp extends Component {
                     <td>{order.User.email}</td>
                     <td>{order.User.address1 + ', ' + order.User.address2 + ', ' + order.User.state + '.'}</td>
                     <td>{order.User.phoneNumber}</td>
-                    <td><button data-key={order.orderId} onClick={this.handleConfirmOrder} className="btn btn-success">Confirm</button></td>
+                    {/* <td><button data-key={order.orderId} onClick={this.handleConfirmOrder} className="btn btn-success">Confirm</button></td> */}
                   </tr>
-                </Link>
               ))
             }
 

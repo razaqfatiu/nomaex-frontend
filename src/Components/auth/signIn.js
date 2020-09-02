@@ -35,7 +35,7 @@ class SignIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.signIn(this.state)
-    this.setState({ isLoggedIn: true })
+    // this.setState({ isLoggedIn: true })
     e.target.reset()
     // this.handleValidation();
   };
@@ -47,12 +47,11 @@ class SignIn extends Component {
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
     let error
-    // if (auth.payload.status === 200) {
-    //   return <Redirect to='/' />
-    // }
-    if (this.state.isLoggedIn === true) {
-      return <Redirect to="/" />
+    console.log(this.props)
+    if ( auth.payload !== undefined && auth.payload.status === 200) {
+      return <Redirect to='/' />
     }
+
     if (authError !== null) {
       error = authError.data.error || authError.data.message
     }
