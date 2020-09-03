@@ -21,7 +21,7 @@
   left: 0;
   min-width: 100%;
   height: 32rem;
-  filter: brightness(30%);
+  filter: brightness(50%);
 }
 .btn-primary {
   background-color: #097725;
@@ -42,6 +42,9 @@
 .card {
   padding: 1rem 2rem;
   margin: 0.5rem 0.1rem;
+}
+.add-padd {
+  margin-bottom: 20%;
 }
 @media (min-width: 40em) {
   /* Bump up size of carousel content */

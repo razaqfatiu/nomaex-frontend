@@ -44,7 +44,7 @@ class SideBar extends Component {
           {/* <p className="ml-3">Heading</p> */}
 
           <Nav.Item className="active">
-            <Nav.Link href="/">
+            <Nav.Link href="/products">
               <FontAwesomeIcon icon={faImage} className="mr-2" />
               All
             </Nav.Link>

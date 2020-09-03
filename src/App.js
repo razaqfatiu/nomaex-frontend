@@ -39,6 +39,7 @@ import VerifyCheckOut from './Components/Checkout/VerifyCheckOut';
 import Activate from './Components/auth/Activate';
 import AdminOrderComp from './Components/Order/AdminOrderComp';
 import OrderDetails from './Components/Order/OrderDetails';
+import Homes from './Components/users/homes';
 
 
 
@@ -135,9 +136,11 @@ class App extends Component {
 
 
               <Route path="/password-recovery-message" component={SentPasswordResetLink} />
+              <Route path="/products" exact component={Product} />
               <Route path='/products/:id' component={ProductDetails} />
               {/* <Route path="/admin/product-update/:id" component={ProductUpdate} /> */}
-              <Route path="/" exact component={Product} />
+              <Route path="/" component={Homes} />
+              
               <Route path="*" component={NotFound404} />
 
             </Switch>

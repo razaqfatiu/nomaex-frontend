@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import './homes.scss'
-import firstSlide from '../../images/Backgrounds/carrots-for-sale-at-market.jpg'
-import secondSlide from '../../images/Backgrounds/market-peppers.jpg'
-import thirdSlide from '../../images/Backgrounds/farm-land-hay-bails.jpg'
+import firstSlide from '../../images/Backgrounds/harvest.jpg'
+import secondSlide from '../../images/Backgrounds/cereal.jpg'
+import thirdSlide from '../../images/Backgrounds/greenGrass.jpg'
 import cock from '../../images/Backgrounds/cock.jpg'
 import cow from '../../images/Backgrounds/cow.jpg'
+import fruit from '../../images/Backgrounds/cock.jpg'
+import poultry from '../../images/Backgrounds/chicken.jpg'
+import tubers from '../../images/Backgrounds/tubers.jpg'
+import vegs from '../../images/Backgrounds/vegs.jpg'
+
 import { Link } from 'react-router-dom'
 
 
@@ -13,7 +18,13 @@ export default class Homes extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      products: [1, 2, 3, 4, 5]
+      products: [
+        { cat: 'cereal', img: secondSlide, title: 'Shop in Cereals' }, 
+        { cat: 'fruit', img: fruit, title: 'Shop in Fruits' }, 
+        { cat: 'animal', img: cow, title: 'Shop in Livestock' }, 
+        { cat: 'poultry', img: poultry, title: 'Shop in Poultry' },
+         { cat: 'tubers', img: tubers, title: 'Shop in Tubers' }, 
+         { cat: 'vegetables', img: vegs, title: 'Shop in Vegetables' }]
     }
   }
   render() {
@@ -61,14 +72,6 @@ export default class Homes extends Component {
               </div>
             </div>
           </div>
-          <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-          </a>
         </div>
 
 
@@ -77,46 +80,30 @@ export default class Homes extends Component {
         <div className="container-fluid padding">
           <div className="row featured-title text-center">
             <div className="col-12">
-              <h1>Featured Products</h1>
+              <h1>FEATURED PRODUCTS</h1>
             </div>
           </div>
         </div>
 
 
         {/* Featured Products */}
-        <div className="container padding">
-          <div className="row featured-product padding">
-            {this.state.products.map((product, index) => (<div className="col-md-4">
-              {/* <h1>Featured Products</h1> */}
-              {(index > 1) ? <div className="card">
-                <img className="card-img-top" src={cock} alt="Card cap" />
-                <div className="card-body">
-                  <h5 className="card-title">Test PRoduct Title</h5>
-                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" className="btn btn-primary">Shop</a>
-                </div>
-              </div> : <div className="card">
-                  <img className="card-img-top" src={cow} alt="Card cap" />
-                  <div className="card-body">
-                    <h5 className="card-title">Test PRoduct Title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Shop</a>
-                  </div>
-                </div>}
+          <div className="container-fluid add-padd row d-flex justify-content-center">
+            {this.state.products.map((product, index) => (
+              <div className="text-center mb-3 card col-sm-12  col-md-6  col-lg-4  col-xl-3  d-flex align-items-stretch">
+                <Link to={'/categories/' + product.cat} key={index}>
 
-              {/* <div className="card">
-                <img className="card-img-top" src={cock} alt="Card cap" />
-                <div className="card-body">
-                  <h5 className="card-title">Test PRoduct Title</h5>
-                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" className="btn btn-primary">Shop</a>
+                  <img className="card-img-top img-responsive" src={product.img} alt="Card cap" height="300" />
+                  <div className="card-body">
+                    <h3 className="card-title m-3">{product.title}</h3>
+                    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                    {/* <a href="#" className="btn btn-primary">Shop</a> */}
+                  </div>
+                  </Link>
                 </div>
-              </div> */}
-            </div>))}
+                ))}
           </div>
         </div>
 
-      </div>
     )
   }
 }
