@@ -40,8 +40,10 @@ export const authenticate = () => {
         try {
             let loading = getState().auth.loading = true
             const authenticate = await axios.get(`${url}/api/v1/auth`, { withCredentials: true })
+            const { userId, exp, isAdministrator } = await authenticate.data.userCred
+            saveAuthCred('user_auth_cred', { userId, exp, isAdministrator })
             loading = getState().auth.loading = false
-            dispatch({ type: 'AUTH_SUCCESS', payload: authenticate, loading })
+            dispatch({ type: 'AUTH_SUCCESS', payload: authenticate.data.userCred, loading })
         }
         catch (error) {
             dispatch({ type: 'AUTH_FAILURE', error })
@@ -53,16 +55,18 @@ export const signIn = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const signInResponse = await axios.post(`${url}/api/v1/signin`, credentials, { withCredentials: true })
-            let authenticate
-            if (signInResponse.status === 200) {
-                authenticate = await axios.get(`${url}/api/v1/auth`, { withCredentials: true })
-                const { userId, exp, isAdministrator } = authenticate.data.userCred
-                saveAuthCred('user_auth_cred', { userId, exp, isAdministrator })
-            }
+            const signInResponse = await axios.post(`${url}/api/v1/signin`, credentials, { withCredentials: false })
+            // let authenticate
+            // if (await signInResponse.status === 200) {
+                
+            //     authenticate = await axios.get(`${url}/api/v1/auth`, { withCredentials: true })
+            //     const { userId, exp, isAdministrator } = await authenticate.data.userCred
+            //     alert(userId)
+            //     saveAuthCred('user_auth_cred', { userId, exp, isAdministrator })
+            // }
 
             loading = getState().auth.loading = false
-            dispatch({ type: 'SIGNIN_SUCCESS', payload: authenticate, loading })
+            dispatch({ type: 'SIGNIN_SUCCESS', payload: signInResponse, loading })
         }
         catch (error) {
             dispatch({ type: 'SIGNIN_FAILURE', error })

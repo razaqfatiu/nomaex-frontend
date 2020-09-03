@@ -22,7 +22,7 @@ import { Nav, Button } from "react-bootstrap";
 import classNames from "classnames";
 
 class SideBar extends Component {
-  handleOnClick(e) {
+  handleOnClick = (e) => {
     
   }
   render() {

@@ -18,9 +18,6 @@ class SignIn extends Component {
   }
 
 
-  componentWillMount() {
-
-  }
 
   handleChange = (e) => {
     this.setState({
@@ -42,13 +39,14 @@ class SignIn extends Component {
 
 
   render() {
-    const { auth, authError, history } = this.props
+    const { auth, history } = this.props
+    const { authError } = auth
     const { data } = auth.payload
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
     let error
-    console.log(this.props)
-    if ( auth.payload !== undefined && auth.payload.status === 200) {
+
+    if (auth.payload !== undefined && auth.payload.status === 200) {
       return <Redirect to='/' />
     }
 
@@ -64,7 +62,7 @@ class SignIn extends Component {
         <div className="form-div">
           <form className="container text-center border rounded border-light p-5 bg-light mb-5" onSubmit={this.handleSubmit}>
 
-            <p className="text-danger">{error ? error : ''}</p>
+            {/* <p className="text-danger">{error ? error : ''}</p> */}
             {/* Email */}
             <div className="form-group row text-left">
               <label htmlFor="email" className="col-sm-2 col-form-label" > <b> Email Address:</b></label>
@@ -105,7 +103,7 @@ class SignIn extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    authError: state.auth.authError,
+    // authError: state.auth.authError,
   }
 }
 

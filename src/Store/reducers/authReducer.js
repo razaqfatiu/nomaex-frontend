@@ -37,6 +37,20 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.error.response
       }
+    case 'AUTH_SUCCESS':
+      // console.log('signin success');
+      return {
+        ...state,
+        payload: action.payload,
+        loading: action.loading,
+        authError: null
+      };
+    case 'AUTH_FAILURE':
+      // console.log('signin failed')
+      return {
+        ...state,
+        authError: action.error.response
+      }
     case 'GET_USER_SUCCESS':
       // console.log('signin success');
       return {

@@ -89,8 +89,8 @@ export default class Homes extends Component {
         {/* Featured Products */}
           <div className="container-fluid add-padd row d-flex justify-content-center">
             {this.state.products.map((product, index) => (
-              <div className="text-center mb-3 card col-sm-12  col-md-6  col-lg-4  col-xl-3  d-flex align-items-stretch">
-                <Link to={'/categories/' + product.cat} key={index}>
+              <div className="text-center mb-3 card col-sm-12  col-md-6  col-lg-4  col-xl-3  d-flex align-items-stretch" key={index}>
+                <Link to={'/categories/' + product.cat}>
 
                   <img className="card-img-top img-responsive" src={product.img} alt="Card cap" height="300" />
                   <div className="card-body">

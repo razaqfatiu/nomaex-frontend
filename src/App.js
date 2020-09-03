@@ -40,6 +40,7 @@ import Activate from './Components/auth/Activate';
 import AdminOrderComp from './Components/Order/AdminOrderComp';
 import OrderDetails from './Components/Order/OrderDetails';
 import Homes from './Components/users/homes';
+import Auth from './Components/auth/Auth';
 
 
 
@@ -104,6 +105,7 @@ class App extends Component {
             <Switch>
               {/* <Route exact path="/"> <Homes toggle={this.toggle} isOpen={this.state.isOpen} /> </Route> */}
               {/* <Route path="/categories/animal" component={Animal} /> */}
+
               <Route path="/categories/cereal" component={Cereal} />
               <Route path="/categories/animal" component={LiveStock} />
               <Route path="/categories/farmtools" component={FarmTool} />
@@ -120,6 +122,7 @@ class App extends Component {
               <ProtectedRoute path="/checkout" component={Checkout} />
               <ProtectedRoute path="/orders" component={Order} />
               <ProtectedRoute path="/order/verify" component={VerifyCheckOut} />
+              <ProtectedRoute path="/auth" component={Auth} />
 
 
               {/* <Route path="/admin" component={Home} /> */}
