@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './signIn.scss';
 import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../Store/actions/authAction';
+import checkAuth from '../Helpers/check-auth';
 
 class SignUp extends Component {
   constructor(props) {
@@ -46,6 +47,9 @@ class SignUp extends Component {
   render() {
     const { auth, authError } = this.props;
     const { errors } = this.state
+    const isAuth = checkAuth.isAuth()
+    if(isAuth) return <Redirect to="/" />
+
     let message
     if (auth.payload.status === 201) message = "We've sent you an email in the provided email address, kindly follow to activate your account"
 

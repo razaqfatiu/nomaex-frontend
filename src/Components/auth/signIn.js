@@ -32,7 +32,6 @@ class SignIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.signIn(this.state)
-    // this.setState({ isLoggedIn: true })
     e.target.reset()
     // this.handleValidation();
   };
@@ -46,8 +45,10 @@ class SignIn extends Component {
     const isAdmin = checkAuth.isAdmin()
     let error
 
+    if(isAuth) return <Redirect to="/" />
+
     if (auth.payload !== undefined && auth.payload.status === 200) {
-      return <Redirect to='/' />
+      return <Redirect from="/signin" to='/auth' />
     }
 
     if (authError !== null) {
@@ -62,7 +63,7 @@ class SignIn extends Component {
         <div className="form-div">
           <form className="container text-center border rounded border-light p-5 bg-light mb-5" onSubmit={this.handleSubmit}>
 
-            {/* <p className="text-danger">{error ? error : ''}</p> */}
+            <p className="text-danger">{error ? error : ''}</p>
             {/* Email */}
             <div className="form-group row text-left">
               <label htmlFor="email" className="col-sm-2 col-form-label" > <b> Email Address:</b></label>

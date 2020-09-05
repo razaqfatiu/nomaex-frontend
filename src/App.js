@@ -120,30 +120,31 @@ class App extends Component {
               <Route path="/contact" component={Contact} />
               <ProtectedRoute path="/cart" component={Cart} />
               <ProtectedRoute path="/checkout" component={Checkout} />
-              <ProtectedRoute path="/orders" component={Order} />
+              <ProtectedRoute exact path="/orders" component={Order} />
               <ProtectedRoute path="/order/verify" component={VerifyCheckOut} />
-              <ProtectedRoute path="/auth" component={Auth} />
+
 
 
               {/* <Route path="/admin" component={Home} /> */}
               <Route path="/signin" component={SignIn} />
+              <Route path="/auth" component={Auth} />
               <Route path="/signup" component={SignUp} />
               <Route path="/verify/user/:token" component={Activate} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:token" component={ResetPassword} />
               <Route path="/activate/:token" component={ResetPassword} />
               <ProtectedRoute path="/admin/orders/:orderId" component={OrderDetails} />
-              <ProtectedRoute path="/admin/orders" component={AdminOrderComp} />
+              <ProtectedRoute exact path="/admin/orders" component={AdminOrderComp} />
 
               <AdminProtectedRoute path="/admin/product-upload" component={ProductUpload} />
 
 
               <Route path="/password-recovery-message" component={SentPasswordResetLink} />
-              <Route path="/products" exact component={Product} />
+              <Route exact path="/products" exact component={Product} />
               <Route path='/products/:id' component={ProductDetails} />
               {/* <Route path="/admin/product-update/:id" component={ProductUpdate} /> */}
               <Route path="/" component={Homes} />
-              
+
               <Route path="*" component={NotFound404} />
 
             </Switch>

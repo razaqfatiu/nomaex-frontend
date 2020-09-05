@@ -6,17 +6,18 @@ import { Redirect } from 'react-router-dom'
 class Auth extends Component {
   // componentWillMount() {
   // }
-  componentDidMount(){
-    // this.props.authenticate()
+  componentWillMount(){
+    this.props.authenticate()
   }
 
   render() {
     const { auth } = this.props
-    const { payload } = this.auth
-    // if(payload.userId !== undefined ) return <Redirect to="/" />
+    const { payload } = auth
+    // if(payload.userId === undefined ) return <Redirect to="/signup" />
+    // if(payload.userId !== undefined) return 
     return (
-      // <Redirect to="/signin" />
-      <div></div>
+    <Redirect to="/" />
+      // <div className="text-center">Redirecting...</div>
     )
   }
 }

@@ -5,7 +5,12 @@ const url = process.env.REACT_APP_API_URL
 var headers = new Headers();
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
-
+// axios.default.headers.common = {Authorization: `Bearer ${token}`}
+// const config = {
+//     headers: {
+        
+//     }
+// }
 
 export const signUp = (credentials) => {
     return async (dispatch, getState) => {
@@ -55,7 +60,7 @@ export const signIn = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const signInResponse = await axios.post(`${url}/api/v1/signin`, credentials, { withCredentials: false })
+            const signInResponse = await axios.post(`${url}/api/v1/signin`, credentials, { withCredentials: true })
             // let authenticate
             // if (await signInResponse.status === 200) {
                 

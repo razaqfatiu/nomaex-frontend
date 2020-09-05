@@ -19,12 +19,12 @@ export default class Homes extends Component {
     super(props)
     this.state = {
       products: [
-        { cat: 'cereal', img: secondSlide, title: 'Shop in Cereals' }, 
-        { cat: 'fruit', img: fruit, title: 'Shop in Fruits' }, 
-        { cat: 'animal', img: cow, title: 'Shop in Livestock' }, 
+        { cat: 'cereal', img: secondSlide, title: 'Shop in Cereals' },
+        { cat: 'fruit', img: fruit, title: 'Shop in Fruits' },
+        { cat: 'animal', img: cow, title: 'Shop in Livestock' },
         { cat: 'poultry', img: poultry, title: 'Shop in Poultry' },
-         { cat: 'tubers', img: tubers, title: 'Shop in Tubers' }, 
-         { cat: 'vegetables', img: vegs, title: 'Shop in Vegetables' }]
+        { cat: 'tubers', img: tubers, title: 'Shop in Tubers' },
+        { cat: 'vegetables', img: vegs, title: 'Shop in Vegetables' }]
     }
   }
   render() {
@@ -45,7 +45,7 @@ export default class Homes extends Component {
                 <div className="carousel-caption text-left">
                   <h2>NOMAEX Farm</h2>
                   <p>Buy the freshly Harvested Farm Products</p>
-                  <p><Link to="/signup"><button type="button" className="btn btn-primary btn-lg" >Signup</button></Link></p>
+                  <p><Link to="/signin"><button type="button" className="btn btn-primary btn-lg" >Sign In</button></Link></p>
                 </div>
 
               </div>
@@ -87,22 +87,23 @@ export default class Homes extends Component {
 
 
         {/* Featured Products */}
-          <div className="container-fluid add-padd row d-flex justify-content-center">
-            {this.state.products.map((product, index) => (
-              <div className="text-center mb-3 card col-sm-12  col-md-6  col-lg-4  col-xl-3  d-flex align-items-stretch" key={index}>
-                <Link to={'/categories/' + product.cat}>
+        <div className="container-fluid add-padd row d-flex justify-content-center ">
+          {this.state.products.map((product, index) => (
+            // <div className="text-center card mb-3 cd-pr" key={index}>
+            <div className="text-center mb-3 card col-sm-12  col-md-6  col-lg-4  col-xl-3  align-items-stretch cd-pr" key={index}>
+              <Link to={'/categories/' + product.cat}>
 
-                  <img className="card-img-top img-responsive" src={product.img} alt="Card cap" height="300" />
-                  <div className="card-body">
-                    <h3 className="card-title m-3">{product.title}</h3>
-                    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                    {/* <a href="#" className="btn btn-primary">Shop</a> */}
-                  </div>
-                  </Link>
+                <img className="card-img-top img-responsive" src={product.img} alt="Card cap" height="300" />
+                <div className="card-body">
+                  <h3 className="card-title m-3">{product.title}</h3>
+                  {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                  {/* <a href="#" className="btn btn-primary">Shop</a> */}
                 </div>
-                ))}
-          </div>
+              </Link>
+            </div>
+          ))}
         </div>
+      </div>
 
     )
   }
