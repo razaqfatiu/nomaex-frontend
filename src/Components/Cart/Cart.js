@@ -49,7 +49,7 @@ class Cart extends Component {
     const { orders } = this.props.order
     const { order } = this.props
     const { checkOut } = this.state
-    // console.log(this.props)
+    console.log(this.props)
     let total = 0
 
     let shippingTotal = 0
@@ -80,6 +80,37 @@ class Cart extends Component {
                 total += calcDiscountPrice(cart.Product.productPrice, cart.Product.productDiscount, cart.quantity)
                 shippingTotal += parseInt(calcShippingDiscount(cart.Product.ProductShipping.cost, cart.quantity));
                 totalDiscount += parseFloat(cart.Product.productDiscount) * parseInt(cart.Product.productPrice)
+                if (cart.Product.isDeleted) {
+                  total -= calcDiscountPrice(cart.Product.productPrice, cart.Product.productDiscount, cart.quantity)
+                  shippingTotal -= calcShippingDiscount(cart.Product.ProductShipping.cost, cart.quantity)
+                  return (
+                  <li className="list-group-item d-flex justify-content-between lh-condensed" key={cart.cartId} style={{opacity: 0.7 }} >
+                    <Link to={`/products/${cart.Product.productId}`}>
+                      <div>
+                        <h6 className="my-0">{cart.Product.productName}</h6>
+                        <b> Product is no more available Kindly remove this product before check out</b>
+                        <br />
+                        <small className="text-muted">Quantity: {cart.quantity}</small>
+                        <br />
+                        <small className="text-muted">Shipping cost for {cart.quantity} units: {calcShippingDiscount(cart.Product.ProductShipping.cost, cart.quantity)}</small>
+
+                        {/* <br /> */}
+                      </div>
+                    </Link>
+                    <span className="text-muted">
+                      {/* <span>&#8358;</span>
+                      &nbsp; */}
+                      {formatCurrency(calcDiscountPrice(cart.Product.productPrice, cart.Product.productDiscount, cart.quantity))}
+
+                      <br />
+                      <button style={{ opacity: 2 }} className="btn btn-danger" data-key={cart.cartId} onClick={this.handleOnDelete}>
+                        Remove
+                      </button>
+                    </span>
+
+                  </li>
+                )
+              }
                 return (
                   <li className="list-group-item d-flex justify-content-between lh-condensed" key={cart.cartId}>
                     <Link to={`/products/${cart.Product.productId}`}>

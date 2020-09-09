@@ -38,8 +38,6 @@ export const getUserInfo = () => {
     }
 }
 
-
-
 export const authenticate = () => {
     return async (dispatch, getState) => {
         try {

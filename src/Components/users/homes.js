@@ -5,7 +5,7 @@ import secondSlide from '../../images/Backgrounds/cereal.jpg'
 import thirdSlide from '../../images/Backgrounds/greenGrass.jpg'
 import cock from '../../images/Backgrounds/cock.jpg'
 import cow from '../../images/Backgrounds/cow.jpg'
-import fruit from '../../images/Backgrounds/cock.jpg'
+import fruit from '../../images/Backgrounds/fruit.jpeg'
 import poultry from '../../images/Backgrounds/chicken.jpg'
 import tubers from '../../images/Backgrounds/tubers.jpg'
 import vegs from '../../images/Backgrounds/vegs.jpg'
@@ -45,7 +45,7 @@ export default class Homes extends Component {
                 <div className="carousel-caption text-left">
                   <h2>NOMAEX Farm</h2>
                   <p>Buy the freshly Harvested Farm Products</p>
-                  <p><Link to="/signin"><button type="button" className="btn btn-primary btn-lg" >Sign In</button></Link></p>
+                  <p><Link to="/products"><button type="button" className="btn btn-primary btn-lg" >SHOP NOW</button></Link></p>
                 </div>
 
               </div>
@@ -56,7 +56,7 @@ export default class Homes extends Component {
                 <div className="carousel-caption text-left">
                   <h2>NOMAEX Farm</h2>
                   <p>NO. 1 Online farm products supplier in Nigeria</p>
-                  <p><Link to="/signup"><button type="button" className="btn btn-primary btn-lg" >Signup</button></Link></p>
+                  <p><Link to="/categories/cereal"><button type="button" className="btn btn-primary btn-lg" >SHOP NOW</button></Link></p>
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@ export default class Homes extends Component {
                 <div className="carousel-caption text-left">
                   <h2>NOMAEX Farm</h2>
                   <p>We have the best in stock for you.</p>
-                  <p><Link to="/signup"><button type="button" className="btn btn-primary btn-lg" >Signup</button></Link></p>
+                  <p><Link to="/products"><button type="button" className="btn btn-primary btn-lg" >SHOP NOW</button></Link></p>
                 </div>
               </div>
             </div>
