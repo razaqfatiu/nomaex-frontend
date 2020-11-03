@@ -8,7 +8,6 @@ export const addItemsToCart = (item) => {
       let loading = getState().cart.loading = true;
       const addItemsToCart = await axios.post(`${url}/api/v1/product/cart`, item, { withCredentials: true })
       loading = getState().cart.loading = false
-      console.log('added item', addItemsToCart)
       dispatch({
         type: 'ADDED_ITEM_TO_CART_SUCCESS',
         cart: addItemsToCart.data.addItemsToCart,

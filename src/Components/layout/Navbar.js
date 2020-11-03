@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Button, Nav, } from "react-bootstrap";
@@ -11,7 +10,6 @@ import { signOut } from '../../Store/actions/authAction';
 import checkAuth from '../Helpers/check-auth';
 import AdminSignedInLinks from './AdminSignedInLinks';
 import { getUserCartItems } from '../../Store/actions/cartAction';
-import { loadAuthCred } from '../../Store/localStorage';
 
 
 class NavBar extends Component {

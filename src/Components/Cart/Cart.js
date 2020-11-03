@@ -5,7 +5,7 @@ import Loading from '../layout/Loading'
 import { Link, Redirect } from 'react-router-dom';
 import './cart.scss'
 import checkAuth from '../Helpers/check-auth';
-import { calcDiscount, calcDiscountPrice } from '../Helpers/price-converters';
+import { calcDiscountPrice } from '../Helpers/price-converters';
 import { formatCurrency } from '../Helpers/currency-formatter'
 import { initializeOrder } from '../../Store/actions/cartAction';
 import { getInitializedOrderRequest } from '../../Store/actions/orderAction';
@@ -49,7 +49,6 @@ class Cart extends Component {
     const { orders } = this.props.order
     const { order } = this.props
     const { checkOut } = this.state
-    console.log(this.props)
     let total = 0
 
     let shippingTotal = 0
@@ -62,6 +61,7 @@ class Cart extends Component {
     if (orders && orders.checkedOut === false) return <Redirect to='/checkout' />
     // this.props.history.push('/checkout')
     if (order && (order.status === 201 || order.status === 302)) return <Redirect to='/checkout' />
+    if (this.props.cart && this.props.cart.loading) return <Loading />
     if (carts.length === 0) return <h2 className="text-center">Select Products to add in the cart</h2>
     // if (loading) return <Loading />
 

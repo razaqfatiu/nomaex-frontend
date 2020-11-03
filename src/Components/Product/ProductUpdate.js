@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { getCategories } from '../../Store/actions/categoryAction';
 import { connect } from 'react-redux';
 import { updateAProduct } from '../../Store/actions/productAction';
-import { Redirect, Route } from 'react-router-dom';
 import allNigeriaStates from '../Helpers/all-states';
-// import { Button, Glyphicon } from 'react-bootstrap';
-
 
 class ProductUpdate extends Component {
   constructor(props) {

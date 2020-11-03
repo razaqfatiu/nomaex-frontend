@@ -21,17 +21,15 @@ class AdminOrderComp extends Component {
     return this.setState({ confirm: true })
   }
   handleSelectOrder = (event) => {
-    const ref = event.target.getAttribute('data-href')
-    console.log(ref)
-    // return <Redirect to={ref} />
+    const id = event.currentTarget.getAttribute('data-id')
+     return window.location = `/admin/orders/${id}`
   }
 
   render() {
     const { orders } = this.props.order
-    console.log(this.props)
     return (
-      <div>
-        <table className="table">
+      <div className="table-responsive ">
+        <table className="table border border-primary">
           <thead>
             <tr>
               <th scope="col">Order ID</th>
@@ -41,19 +39,21 @@ class AdminOrderComp extends Component {
               <th scope="col">Customer email</th>
               <th scope="col">Customer's Address</th>
               <th scope="col">Customer's Phone</th>
+              <th scope="col">Order Status</th>
             </tr>
           </thead>
           <tbody>
             {
               orders && orders.map(order => (
-                  <tr onClick={this.handleSelectOrder} data-href={`/admin/orders/${order.orderId}`} key={order.orderId}>
+                  <tr data-id={order.orderId} key={order.orderId} onClick={this.handleSelectOrder}>
                     <td>{order.orderId}</td>
                     <td>{order.amount}</td>
                     <td>{order.order_status.label}</td>
-                    <td>{order.User.firstName}</td>
+                    <td>{order.User.firstName + "  " + order.User.lastName}</td>
                     <td>{order.User.email}</td>
                     <td>{order.User.address1 + ', ' + order.User.address2 + ', ' + order.User.state + '.'}</td>
                     <td>{order.User.phoneNumber}</td>
+                    <td>{order.order_status.label}</td>
                     {/* <td><button data-key={order.orderId} onClick={this.handleConfirmOrder} className="btn btn-success">Confirm</button></td> */}
                   </tr>
               ))

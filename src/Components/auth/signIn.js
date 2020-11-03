@@ -3,7 +3,6 @@ import './signIn.scss';
 import { signIn, authenticate } from '../../Store/actions/authAction'
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import Loading from '../layout/Loading';
 import checkAuth from '../Helpers/check-auth';
 
 class SignIn extends Component {

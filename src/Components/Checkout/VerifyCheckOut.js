@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { verifyOrderCheckOut } from '../../Store/actions/orderAction'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
@@ -13,7 +13,6 @@ class VerifyCheckOut extends Component {
   render() {
     const { loading, order } = this.props
     const { orders } = order
-    console.log(this.props)
     // if (orders) return <Redirect to="/orders" />
     return (
       <div className="text-center">
@@ -30,7 +29,7 @@ class VerifyCheckOut extends Component {
 }
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     order: state.order
   }

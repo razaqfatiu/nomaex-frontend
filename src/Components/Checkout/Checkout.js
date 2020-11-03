@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { getInitializedOrderRequest, checkOutPay, cancelOrder } from '../../Store/actions/orderAction'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
-import Loading from '../layout/Loading'
+import { Redirect } from 'react-router-dom'
 import { getUserInfo } from '../../Store/actions/authAction'
 import allNigeriaStates from '../Helpers/all-states'
 import './checkout.scss'
@@ -31,16 +30,13 @@ class Checkout extends Component {
   };
 
   onSelectState = (event) => {
-    // const selectedIndex = event.target.options.selectedIndex;
     this.setState({
       state: event.target.value
     });
   }
 
   handlePay = () => {
-    // const amount = this.props.order.orders.amount || this.props.location.state.amount
     this.props.checkOutPay(this.state);
-    // console.log(this.state)
   }
   handleCancelPay = () => {
     this.props.cancelOrder()
@@ -52,8 +48,6 @@ class Checkout extends Component {
     const { payload } = auth
     const { orders, checkOut, loading } = this.props.order
     const { cancel } = this.state
-
-    console.log(this.props)
 
     if (cancel) return <Redirect to='/' />
     if (checkOut && checkOut.authorization_url) {
@@ -70,7 +64,7 @@ class Checkout extends Component {
             <span>Delivery Location: </span>
             <strong>{payload && payload.address1 + ', ' + payload.state}</strong>
           </li>
-          <h4 className="text-center mt-4">Select New Address</h4> <br />
+          <h4 className="text-center mt-4">Specify Delivery Address</h4> <br />
           <li className="list-group-item d-flex justify-content-between">
             
             <form className="container text-center border rounded border-light p-5 bg-light mb-5" onSubmit={this.handleSubmit}>

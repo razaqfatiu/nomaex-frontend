@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { getProductsByCategory } from '../../Store/actions/productAction'
 import Loading from '../layout/Loading'
 import { connect } from 'react-redux'
-import { Button, Nav, Card, Container, Row, Col, CardGroup, ButtonGroup, Carousel } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom'
@@ -39,16 +39,15 @@ class Cereal extends Component {
       <Container fluid className="product-div">
         <h2 className="text-center" >CEREALS</h2>
         <hr />
-        <div className="row d-flex justify-content-left">
+        <div className="row d-flex justify-content-center">
           {products && products.map((product) => (
-            <Card key={product.productId} className="text-center mb-3 card col-sm-6  col-md-4  col-lg-3  col-xl-2  d-flex align-items-stretch" style={{ width: '15rem', height: '25rem' }}>
+            <Card key={product.productId} className="text-center mb-3 card col-sm-6 col-md-4 col-lg-3 col-xl-3 d-flex align-items-stretch" style={{ width: '35rem', height: '27rem' }}>
               {product && product.Product_images.map((Product_image, i) => (
                 (Product_image && i === 0) ? <Card.Img key={Product_image.imageId} className="p-2" variant="top" src={Product_image.imageUrl} alt="Card image cap" height="150" /> : ''))}
 
               <Card.Body>
                 <Link to={`/products/${product.productId}`}>
                   <Card.Title className="product-text-size">
-                    {/* {formatCurrency(product.productPrice)}  */}
                     {formatCurrency(calcDiscountPrice(product.productPrice, product.productDiscount, 1))}
                     &nbsp; &nbsp;
                     <strike><span>

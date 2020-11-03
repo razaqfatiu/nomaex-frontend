@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { getProductsByCategory } from '../../Store/actions/productAction'
 import Loading from '../layout/Loading'
 import { connect } from 'react-redux'
-import { Button, Nav, Card, Container, Row, Col, CardGroup, ButtonGroup, Carousel } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom'
@@ -10,14 +10,21 @@ import '../Product/Product.scss'
 import { addItemsToCart } from '../../Store/actions/cartAction';
 import { formatCurrency } from '../Helpers/currency-formatter';
 import { calcDiscountPrice } from '../Helpers/price-converters';
-
+import checkAuth from '../Helpers/check-auth';
 
 class Poultry extends Component {
 
   componentWillMount() {
     this.props.getProductsByCategory(7)
   }
-
+  handleAddToCart = (event) => {
+    if (!checkAuth.isAuth()) return this.props.history.push('/signin')
+    const productId = event.target.getAttribute('data-key')
+    const quantity = 1;
+    const prod = { productId, quantity }
+    event.target.style.background = '#000160'
+    return this.props.addItemsToCart(prod)
+  }
   render() {
     const { product } = this.props
     const { products } = product
@@ -28,9 +35,9 @@ class Poultry extends Component {
       <Container fluid className="product-div">
         <h2 className="text-center" >POULTRY</h2>
         <hr />
-        <div className="row d-flex justify-content-left">
+        <div className="row d-flex justify-content-center">
           {products && products.map((product) => (
-            <Card key={product.productId} className="text-center mb-3 card col-sm-6  col-md-4  col-lg-3  col-xl-2  d-flex align-items-stretch" style={{ width: '15rem', height: '25rem' }}>
+            <Card key={product.productId} className="text-center mb-3 card col-sm-6  col-md-4  col-lg-3  col-xl-3 d-flex align-items-stretch" style={{ width: '35rem', height: '27rem' }}>
               {product && product.Product_images.map((Product_image, i) => (
                 (Product_image && i === 0) ? <Card.Img key={Product_image.imageId} className="p-2" variant="top" src={Product_image.imageUrl} alt="Card image cap" height="150" /> : ''))}
 

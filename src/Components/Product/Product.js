@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getAllProducts } from '../../Store/actions/productAction'
 import Loading from '../layout/Loading'
-import { Button, Nav, Card, Container, Row, Col, CardGroup, ButtonGroup, Carousel } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Product.scss'
 import { addItemsToCart } from '../../Store/actions/cartAction';
 import checkAuth from '../Helpers/check-auth';
@@ -42,15 +42,16 @@ class Product extends Component {
   render() {
     const { product } = this.props
     const { products } = product
-    if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
     if (product && product.loading) return <Loading />
+    if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
+
     return (
       <Container fluid className="product-div">
         <h2 className="text-center">ALL PRODUCTS</h2>
         <hr />
         <div className="row d-flex justify-content-center">
           {products && products.map((product) => (
-            <Card key={product.productId} className="text-center mb-3 card col-sm-6  col-md-4  col-lg-3  col-xl-2  d-flex align-items-stretch" style={{ width: '15rem', height: '25rem' }}>
+            <Card key={product.productId} className="text-center mb-3 card col-sm-12 col-md-4 col-lg-3 col-xl-3 align-items-stretch" style={{ width: '35rem', height: '27rem' }}>
               {product && product.Product_images.map((Product_image, i) => (
                 (Product_image && i === 0) ? <Card.Img key={Product_image.imageId} className="p-2" variant="top" src={Product_image.imageUrl} alt="Card image cap" height="150" /> : ''))}
 

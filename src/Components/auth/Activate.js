@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { activateAccount } from '../../Store/actions/authAction';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 class Activate extends Component {
   constructor(props) {
@@ -16,8 +15,6 @@ class Activate extends Component {
   render() {
     const { auth } = this.props
     const { payload, authError } = auth
-    console.log(auth)
-
     return (
       <div className="text-center">
         <h5 >{(payload && payload.message !== false) ? payload.message : ''}</h5>

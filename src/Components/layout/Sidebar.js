@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  // faHome,
-  // faBriefcase,
-  // faPaperPlane,
   faQuestion,
   faImage,
   faTimes,
-  faAppleAlt,
   faFish,
   faTractor,
   faLeaf,

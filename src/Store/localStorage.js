@@ -18,7 +18,7 @@ export const saveState = (state) => {
     localStorage.setItem('state', serializedState)
   }
   catch (error) {
-    return console.log('state not serializable')
+    return 'state not serializable'
   }
 }
 
@@ -28,7 +28,7 @@ export const saveAuthCred = (authRef, value) => {
     localStorage.setItem(authRef, serializedState)
   }
   catch (error) {
-    return console.log('state not serializable')
+    return 'state not serializable'
   }
 }
 

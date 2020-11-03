@@ -127,6 +127,7 @@ export const adminGetOneOrder = (id) => {
       dispatch({
         type: 'ADMIN_GET_ONE_ORDER_SUCCESS',
         order: adminGetOneOrders.data.data,
+        shoppingCart: adminGetOneOrders.data.shoppingCart,
         loading
       })
     } catch (error) {
