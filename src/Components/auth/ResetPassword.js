@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { resetPassword } from '../../Store/actions/authAction';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Loading from '../layout/Loading';
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -35,6 +36,8 @@ class ResetPassword extends Component {
 
   render() {
     const { auth } = this.props
+    if(auth.loading) return <Loading />
+
     if (auth.payload.status === 201) {
       document.getElementById("reset-password-form").reset();
       return <Redirect to="/signin" />

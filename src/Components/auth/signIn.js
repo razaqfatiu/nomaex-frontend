@@ -4,6 +4,7 @@ import { signIn, authenticate } from '../../Store/actions/authAction'
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import checkAuth from '../Helpers/check-auth';
+import Loading from '../layout/Loading'
 
 class SignIn extends Component {
   constructor(props) {
@@ -15,8 +16,6 @@ class SignIn extends Component {
       // errors: {}
     };
   }
-
-
 
   handleChange = (e) => {
     this.setState({
@@ -35,7 +34,6 @@ class SignIn extends Component {
     // this.handleValidation();
   };
 
-
   render() {
     const { auth, history } = this.props
     const { authError } = auth
@@ -43,9 +41,8 @@ class SignIn extends Component {
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
     let error
-
+    if(auth.loading) return <Loading />
     if(isAuth) return <Redirect to="/" />
-
     if (auth.payload !== undefined && auth.payload.status === 200) {
       return <Redirect from="/signin" to='/auth' />
     }

@@ -1,6 +1,6 @@
 const initState = {
   cartError: null,
-  loading: true,
+  loading: false,
   carts: [],
   order: null
 }

@@ -78,6 +78,7 @@ class ProductDetails extends Component {
     // if (this.state.isDeleted)
     if (productError && productError.status === 404)
       return <h3 className="text-center">{productError.data.getOneProduct}</h3>;
+      if (product && product.loading) return <Loading />
     if (product && product.length === 0) return <Loading />;
 
     return (

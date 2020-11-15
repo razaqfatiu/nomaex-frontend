@@ -1,6 +1,6 @@
 const initState = {
   authError: null,
-  loading: true,
+  loading: false,
   payload: {},
   isLoggedIn: null
 }

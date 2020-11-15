@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { adminGetAllOrders, confirmOrderShipped } from '../../Store/actions/orderAction'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
+import Loading from '../layout/Loading'
 
 class AdminOrderComp extends Component {
   constructor(props) {
@@ -26,7 +27,9 @@ class AdminOrderComp extends Component {
   }
 
   render() {
-    const { orders } = this.props.order
+    const { orders, loading } = this.props.order
+    if(loading) return <Loading />
+
     return (
       <div className="table-responsive ">
         <table className="table border border-primary">

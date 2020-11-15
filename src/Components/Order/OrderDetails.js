@@ -4,6 +4,7 @@ import {
   adminGetOneOrder,
   confirmOrderShipped,
 } from "../../Store/actions/orderAction";
+import Loading from "../layout/Loading";
 
 class OrderDetails extends Component {
   componentWillMount() {
@@ -18,7 +19,9 @@ class OrderDetails extends Component {
   };
 
   render() {
-    let { orders, shoppingCart } = this.props.order;
+    let { orders, shoppingCart, loading } = this.props.order;
+    if(loading) return <Loading />
+
     let carts = null;
     let orderResult;
     if (orders && orders !== null) {

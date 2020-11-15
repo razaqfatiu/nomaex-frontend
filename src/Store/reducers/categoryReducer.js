@@ -1,7 +1,7 @@
 const initState = {
   categoryError: null,
   categories: [],
-  loading: true
+  loading: false
 }
 
 const categoryReducer = (state = initState, action) => {

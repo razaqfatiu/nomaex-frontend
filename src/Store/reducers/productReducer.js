@@ -1,6 +1,6 @@
 const initState = {
   productError: null,
-  loading: true,
+  loading: false,
   products: [],
 }
 

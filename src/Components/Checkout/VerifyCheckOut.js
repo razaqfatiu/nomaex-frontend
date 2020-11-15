@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { verifyOrderCheckOut } from '../../Store/actions/orderAction'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Loading from '../layout/Loading'
 
 
 class VerifyCheckOut extends Component {
@@ -13,6 +14,8 @@ class VerifyCheckOut extends Component {
   render() {
     const { loading, order } = this.props
     const { orders } = order
+    if(loading) return <Loading />
+
     // if (orders) return <Redirect to="/orders" />
     return (
       <div className="text-center">

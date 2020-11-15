@@ -1,7 +1,7 @@
 
 const initState = {
   orderError: null,
-  loading: true,
+  loading: false,
   orders: [],
   shoppingCart: null,
   checkOut: null

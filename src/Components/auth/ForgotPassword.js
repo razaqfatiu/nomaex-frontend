@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { forgotPassword } from '../../Store/actions/authAction'
 import { Redirect } from 'react-router-dom'
+import Loading from '../layout/Loading';
 
 class ForgotPassword extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class ForgotPassword extends Component {
 
     render() {
         const { auth, authError } = this.props
+        if(auth.loading) return <Loading />
         if (auth.payload.status === 200) return <Redirect to="/password-recovery-message" />
 
         return (

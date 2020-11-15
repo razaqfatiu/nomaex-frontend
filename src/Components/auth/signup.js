@@ -5,6 +5,7 @@ import './signIn.scss';
 import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../Store/actions/authAction';
 import checkAuth from '../Helpers/check-auth';
+import Loading from '../layout/Loading';
 
 class SignUp extends Component {
   constructor(props) {
@@ -39,18 +40,20 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.validatePassword()
-    this.props.signUp(this.state);
+    // this.props.signUp(this.state);
     e.target.reset();
   };
 
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth } = this.props;
     const { errors } = this.state
     const isAuth = checkAuth.isAuth()
+    if(auth.loading) return <Loading />
+
     if(isAuth) return <Redirect to="/" />
 
-    let message
+    let message = ""
     if (auth.payload.status === 201) message = "We've sent you an email in the provided email address, kindly follow to activate your account"
 
     return (
@@ -81,8 +84,6 @@ class SignUp extends Component {
                 <input type="text" id="lastName" name="lastName" className="form-control" placeholder="Last name" required pattern=".{3,}" title="Last name should have at least 3 characters" onChange={this.handleChange} />
               </div>
             </div>
-
-
 
             {/* E-mail */}
             <div className="form-group row text-left">
@@ -169,7 +170,7 @@ class SignUp extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    // authError: state.authReducer.authError
+    authError: state.auth.authError
   }
 }
 

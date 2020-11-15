@@ -29,8 +29,10 @@ export const signUp = (credentials) => {
 export const getUserInfo = () => {
     return async (dispatch, getState) => {
         try {
+            let loading = getState().auth.loading = true
             const getUser = await axios.get(`${url}/api/v1/user/me`, { withCredentials: true })
             dispatch({ type: 'GET_USER_SUCCESS', payload: getUser.data.data })
+            loading = getState().auth.loading = false
         }
         catch (error) {
             dispatch({ type: 'GET_USER_FAILURE', error })

@@ -3,6 +3,7 @@ import { getCategories } from '../../Store/actions/categoryAction';
 import { connect } from 'react-redux';
 import { updateAProduct } from '../../Store/actions/productAction';
 import allNigeriaStates from '../Helpers/all-states';
+import Loading from '../layout/Loading';
 
 class ProductUpdate extends Component {
   constructor(props) {
@@ -75,6 +76,7 @@ class ProductUpdate extends Component {
     const { categories: categoriesState } = this.props
     const { categories } = categoriesState
     const { product } = this.props
+    if (product && product.loading) return <Loading />
 
 
     return (

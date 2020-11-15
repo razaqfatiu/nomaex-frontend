@@ -78,6 +78,7 @@ class ProductUpload extends Component {
       message = product.products.data.message
     }
     // console.log(product.products.data.message)
+    if (product && product.loading) return <Loading />
     if (categories.categoryError) return (<Loading />)
 
     return (
