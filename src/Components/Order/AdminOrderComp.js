@@ -27,8 +27,8 @@ class AdminOrderComp extends Component {
   }
 
   render() {
-    const { orders, loading } = this.props.order
-    if(loading) return <Loading />
+    const { orders, loading, orderError } = this.props.order
+    if(loading && orderError === null) return <Loading />
 
     return (
       <div className="table-responsive ">

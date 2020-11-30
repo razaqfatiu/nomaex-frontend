@@ -46,11 +46,11 @@ class Cart extends Component {
   };
 
   render() {
-    const { carts, loading } = this.props.cart;
+    const { carts, loading, cartError } = this.props.cart;
     const { orders } = this.props.order;
     const { order } = this.props;
     const { checkOut } = this.state;
-    if (loading) return <Loading />;
+    if (loading && cartError === null) return <Loading />;
 
     let total = 0;
 

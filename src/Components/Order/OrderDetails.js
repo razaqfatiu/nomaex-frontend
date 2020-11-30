@@ -19,8 +19,8 @@ class OrderDetails extends Component {
   };
 
   render() {
-    let { orders, shoppingCart, loading } = this.props.order;
-    if(loading) return <Loading />
+    let { orders, shoppingCart, loading, orderError } = this.props.order;
+    if(loading && orderError === null) return <Loading />
 
     let carts = null;
     let orderResult;

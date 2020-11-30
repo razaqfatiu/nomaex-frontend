@@ -12,9 +12,9 @@ class Order extends Component {
   }
 
   render() {
-    const { orders, loading } = this.props.order
+    const { orders, loading, orderError } = this.props.order
     // const { orders } = order
-    if(loading) return <Loading />
+    if(loading && orderError === null) return <Loading />
     return (
       <div className="text-center">
         <h2>Recent Orders</h2>

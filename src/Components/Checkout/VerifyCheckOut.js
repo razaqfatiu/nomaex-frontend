@@ -13,8 +13,8 @@ class VerifyCheckOut extends Component {
 
   render() {
     const { loading, order } = this.props
-    const { orders } = order
-    if(loading) return <Loading />
+    const { orders, orderError } = order
+    if(loading && orderError === null) return <Loading />
 
     // if (orders) return <Redirect to="/orders" />
     return (

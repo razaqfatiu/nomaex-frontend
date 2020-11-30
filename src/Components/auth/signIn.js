@@ -41,7 +41,7 @@ class SignIn extends Component {
     const isAuth = checkAuth.isAuth()
     const isAdmin = checkAuth.isAdmin()
     let error
-    if(auth.loading) return <Loading />
+    if(auth.loading && authError === null) return <Loading />
     if(isAuth) return <Redirect to="/" />
     if (auth.payload !== undefined && auth.payload.status === 200) {
       return <Redirect from="/signin" to='/auth' />

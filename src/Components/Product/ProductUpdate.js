@@ -76,7 +76,8 @@ class ProductUpdate extends Component {
     const { categories: categoriesState } = this.props
     const { categories } = categoriesState
     const { product } = this.props
-    if (product && product.loading) return <Loading />
+    const { productError } = product
+    if (product && (product.loading && productError === null)) return <Loading />
 
 
     return (

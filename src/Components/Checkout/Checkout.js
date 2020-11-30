@@ -47,9 +47,9 @@ class Checkout extends Component {
   render() {
     const { auth } = this.props
     const { payload } = auth
-    const { orders, checkOut, loading } = this.props.order
+    const { orders, checkOut, loading, orderError } = this.props.order
     const { cancel } = this.state
-    if(loading) return <Loading />
+    if(loading && orderError === null) return <Loading />
     if (cancel) return <Redirect to='/' />
     if (checkOut && checkOut.authorization_url) {
       return window.location = checkOut.authorization_url

@@ -46,11 +46,11 @@ class SignUp extends Component {
 
 
   render() {
-    const { auth } = this.props;
+    const { auth, authError } = this.props;
     const { errors } = this.state
     const isAuth = checkAuth.isAuth()
-    if(auth.loading) return <Loading />
 
+    if(auth.loading && authError === null) return <Loading />
     if(isAuth) return <Redirect to="/" />
 
     let message = ""

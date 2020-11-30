@@ -73,12 +73,13 @@ class ProductUpload extends Component {
     const { categories } = categoriesState
     let message
 
+    const { productError } = product
 
     if (!product.loading) {
       message = product.products.data.message
     }
     // console.log(product.products.data.message)
-    if (product && product.loading) return <Loading />
+    if (product &&( product.loading && productError === null)) return <Loading />
     if (categories.categoryError) return (<Loading />)
 
     return (

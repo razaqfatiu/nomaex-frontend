@@ -41,8 +41,8 @@ class Product extends Component {
 
   render() {
     const { product } = this.props
-    const { products } = product
-    if (product && product.loading) return <Loading />
+    const { products, productError} = product
+    if (product && (product.loading && productError === null)) return <Loading />
     if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
 
     return (
