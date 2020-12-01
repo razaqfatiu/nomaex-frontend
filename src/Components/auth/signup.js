@@ -41,7 +41,7 @@ class SignUp extends Component {
     e.preventDefault();
     this.validatePassword()
     this.props.signUp(this.state);
-    e.target.reset();
+    // e.target.reset();
   };
 
 
@@ -49,7 +49,7 @@ class SignUp extends Component {
     const { auth, authError } = this.props;
     const { errors } = this.state
     const isAuth = checkAuth.isAuth()
-
+console.log(authError)
     if(auth.loading && authError === null) return <Loading />
     if(isAuth) return <Redirect to="/" />
 
@@ -67,7 +67,7 @@ class SignUp extends Component {
           <h3 className="p-3">Create User Account</h3>
 
           <form className="text-center border border-light p-5 rounded bg-light" onSubmit={this.handleSubmit}>
-            <p className="text-danger">{message ? message : ''}</p>
+            <p className="text-danger">{authError !== null ? authError.data.error : message }</p>
 
             <div className="form-group row text-left">
               {/* First name */}
