@@ -75,8 +75,9 @@ class ProductUpload extends Component {
 
     const { productError } = product
 
-    if (!product.loading) {
+    if (!product.loading && product.products.length > 0) {
       message = product.products.data.message
+
     }
     // console.log(product.products.data.message)
     if (product &&( product.loading && productError === null)) return <Loading />

@@ -40,7 +40,7 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.validatePassword()
-    // this.props.signUp(this.state);
+    this.props.signUp(this.state);
     e.target.reset();
   };
 
