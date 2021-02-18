@@ -55,7 +55,7 @@ export default class Homes extends Component {
                 <div className="carousel-caption text-left">
                   <h2>NOMAEX Farm</h2>
                   <p>NO. 1 Online farm products supplier in Nigeria</p>
-                  <p><Link to="/categories/cereal"><button type="button" className="btn btn-primary btn-lg" >SHOP NOW</button></Link></p>
+                  <p><Link to="/products"><button type="button" className="btn btn-primary btn-lg" >SHOP NOW</button></Link></p>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default class Homes extends Component {
         <div className="container-fluid add-padd row d-flex justify-content-center ">
           {this.state.products.map((product, index) => (
             // <div className="text-center card mb-3 cd-pr" key={index}>
-            <div className="text-center mb-3 card col-sm-12  col-md-6  col-lg-4  col-xl-3  align-items-stretch cd-pr" key={index}>
+            <div className="text-center mb-3 card col-sm-12 col-md-6 col-lg-4  col-xl-4  align-items-stretch cd-pr" key={index}>
               <Link to={'/categories/' + product.cat}>
 
                 <img className="card-img-top img-responsive" src={product.img} alt="Card cap" height="300" />

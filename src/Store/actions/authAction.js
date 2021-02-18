@@ -80,6 +80,21 @@ export const signIn = (credentials) => {
 }
 
 
+export const generateRefreshLink = (credentials) => {
+    return async (dispatch, getState) => {
+        try {
+            let loading = getState().auth.loading = true
+            console.log(credentials)
+            const generateLink = await axios.post(`${url}/api/v1/auth/account/generate`, credentials, { withCredentials: true })
+            loading = getState().auth.loading = false
+            dispatch({ type: 'REFRESH_LINK_SUCCESS', payload: generateLink, loading })
+        }
+        catch (error) {
+            dispatch({ type: 'REFRESH_LINK_FAILURE', error })
+        }
+    }
+}
+
 export const forgotPassword = (credentials) => {
     return async (dispatch, getState) => {
         try {

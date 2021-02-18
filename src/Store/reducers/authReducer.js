@@ -57,6 +57,18 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.error.response
       }
+    case 'REFRESH_LINK_SUCCESS':
+      return {
+        ...state,
+        payload: action.payload,
+        loading: action.loading,
+        authError: null
+      }
+    case 'REFRESH_LINK_FAILURE':
+      return {
+        ...state,
+        authError: action.error.response
+      }
     case 'FORGOT_PASSWORD_SUCCESS':
       return {
         ...state,

@@ -18,7 +18,7 @@ import SideBar from './Components/layout/Sidebar';
 import { Container } from "react-bootstrap";
 import Loading from './Components/layout/Loading';
 import ProductDetails from './Components/Product/ProductDetails';
-import SentPasswordResetLink from './Components/auth/SentVerificationLink';
+import SentVerificationLink from './Components/auth/SentVerificationLink';
 import NotFound404 from './Components/Custom/NotFound404';
 import LiveStock from './Components/Categories/LiveStock';
 import FarmTool from './Components/Categories/FarmTool';
@@ -38,6 +38,7 @@ import AdminOrderComp from './Components/Order/AdminOrderComp';
 import OrderDetails from './Components/Order/OrderDetails';
 import Homes from './Components/users/homes';
 import Auth from './Components/auth/Auth';
+import GenerateLink from './Components/auth/GenerateLink';
 
 
 
@@ -127,6 +128,7 @@ class App extends Component {
               <Route path="/auth" component={Auth} />
               <Route path="/signup" component={SignUp} />
               <Route path="/verify/user/:token" component={Activate} />
+              <Route path="/generate/verify-link" component={GenerateLink} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:token" component={ResetPassword} />
               <Route path="/activate/:token" component={ResetPassword} />
@@ -136,7 +138,7 @@ class App extends Component {
               <AdminProtectedRoute path="/admin/product-upload" component={ProductUpload} />
 
 
-              <Route path="/password-recovery-message" component={SentPasswordResetLink} />
+              <Route path="/password-recovery-message" component={SentVerificationLink} />
               <Route exact path="/products" exact component={Product} />
               <Route path='/products/:id' component={ProductDetails} />
               {/* <Route path="/admin/product-update/:id" component={ProductUpdate} /> */}

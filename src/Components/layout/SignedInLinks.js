@@ -18,12 +18,12 @@ class SignedInLinks extends Component {
 
     return (
       <Nav className="ml-auto" navbar >
-        <Nav.Link className="text-white" href="/">Home</Nav.Link>
-        <Nav.Link className="text-white" href="/contact">Contact Us</Nav.Link>
-        <Nav.Link className="text-white" href="/orders">Orders</Nav.Link>
-        <Nav.Link className="text-white" href="/cart">Cart <i className="fa fa-shopping-cart"></i> </Nav.Link>
+        <Nav.Link className="text-white nitem" href="/">Home</Nav.Link>
+        <Nav.Link className="text-white nitem" href="/contact">Contact Us</Nav.Link>
+        <Nav.Link className="text-white nitem" href="/orders">Orders</Nav.Link>
+        <Nav.Link className="text-white nitem" href="/cart">Cart <i className="fa fa-shopping-cart"></i> </Nav.Link>
         {/* <span className="badge badge-light">0</span> */}
-        <Nav.Link className="text-white" onClick={prop.signOut} href="/signin">Log Out</Nav.Link>
+        <Nav.Link className="text-white nitem" onClick={prop.signOut} href="/signin">Log Out</Nav.Link>
       </Nav>
     )
   }

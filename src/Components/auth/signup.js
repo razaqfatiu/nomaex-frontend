@@ -41,7 +41,7 @@ class SignUp extends Component {
     e.preventDefault();
     this.validatePassword()
     this.props.signUp(this.state);
-    // e.target.reset();
+    e.target.reset();
   };
 
 
@@ -49,12 +49,14 @@ class SignUp extends Component {
     const { auth, authError } = this.props;
     const { errors } = this.state
     const isAuth = checkAuth.isAuth()
-console.log(authError)
     if(auth.loading && authError === null) return <Loading />
     if(isAuth) return <Redirect to="/" />
 
     let message = ""
-    if (auth.payload.status === 201) message = "We've sent you an email in the provided email address, kindly follow to activate your account"
+    if (auth.payload.status === 201) {
+      message = "We've sent you an email in the provided email address, kindly follow to activate your account"
+      return <Redirect to="/password-recovery-message" />
+    }
 
     return (
       <div className="signin">
