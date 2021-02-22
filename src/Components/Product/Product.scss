@@ -1,0 +1,41 @@
+.product-div {
+  margin-bottom: 30%;
+}
+.card {
+  border: none;
+}
+.product-text-size {
+  font-size: small;
+}
+
+#hideme-container {
+  overflow:hidden;
+  position:relative;
+}
+#hideme {
+  -webkit-animation: cssAnimation 5s forwards; 
+  animation: cssAnimation 5s forwards;
+}
+@keyframes cssAnimation {
+  0%   {opacity: 1;}
+  90%  {opacity: 1;}
+  100% {opacity: 0;}
+}
+@-webkit-keyframes cssAnimation {
+  0%   {opacity: 1;}
+  90%  {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+
+.product-details-container {
+  margin-top: 10%;
+  margin-bottom: 30vw;
+  .product-details-right {
+    margin-top: 5%;
+    .label {
+      font-size: 20px;
+      border: 2px solid blue($color: #000000);
+    }
+  }
+}

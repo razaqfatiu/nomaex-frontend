@@ -1,0 +1,24 @@
+// Navigation Variables
+$content-width: 1000px;
+$breakpoint: 799px;
+$nav-height: 70px;
+$nav-background: #097725;
+$nav-font-color: hsl(0, 0%, 100%);
+$link-hover-color: rgb(8, 58, 3);
+
+
+.navbar {
+  background: $nav-background !important;
+  // color: $nav-font-color !important;
+}
+
+
+@media (max-width: 575.98px) {
+  Nav {
+    // border: 2px solid black;
+    .nitem{
+      font-size: 12px;
+      // border: 2px solid yellow;
+    }
+  }
+}
