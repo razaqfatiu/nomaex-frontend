@@ -16,7 +16,7 @@ export const signUp = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const signUpResponse = await axios.post(`${url}/api/v1/signup`, credentials, { withCredentials: true })
+            const signUpResponse = await axios.post(`${url}/api/v1/signup`, credentials, { withCredentials: false })
             loading = getState().auth.loading = false
             dispatch({ type: 'SIGNUP_SUCCESS', payload: signUpResponse })
         }
@@ -30,7 +30,7 @@ export const getUserInfo = () => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const getUser = await axios.get(`${url}/api/v1/user/me`, { withCredentials: true })
+            const getUser = await axios.get(`${url}/api/v1/user/me`, { withCredentials: false })
             dispatch({ type: 'GET_USER_SUCCESS', payload: getUser.data.data })
             loading = getState().auth.loading = false
         }
@@ -44,7 +44,7 @@ export const authenticate = () => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const authenticate = await axios.get(`${url}/api/v1/auth`, { withCredentials: true })
+            const authenticate = await axios.get(`${url}/api/v1/auth`, { withCredentials: false })
             const { userId, exp, isAdministrator } = await authenticate.data.userCred
             saveAuthCred('user_auth_cred', { userId, exp, isAdministrator })
             loading = getState().auth.loading = false
@@ -60,7 +60,7 @@ export const signIn = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const signInResponse = await axios.post(`${url}/api/v1/signin`, credentials, { withCredentials: true })
+            const signInResponse = await axios.post(`${url}/api/v1/signin`, credentials, { withCredentials: false })
             // let authenticate
             // if (await signInResponse.status === 200) {
                 
@@ -85,7 +85,7 @@ export const generateRefreshLink = (credentials) => {
         try {
             let loading = getState().auth.loading = true
             console.log(credentials)
-            const generateLink = await axios.post(`${url}/api/v1/auth/account/generate`, credentials, { withCredentials: true })
+            const generateLink = await axios.post(`${url}/api/v1/auth/account/generate`, credentials, { withCredentials: false })
             loading = getState().auth.loading = false
             dispatch({ type: 'REFRESH_LINK_SUCCESS', payload: generateLink, loading })
         }
@@ -99,7 +99,7 @@ export const forgotPassword = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const forgotPassword = await axios.post(`${url}/api/v1/auth/forgot-password`, credentials, { withCredentials: true })
+            const forgotPassword = await axios.post(`${url}/api/v1/auth/forgot-password`, credentials, { withCredentials: false })
             loading = getState().auth.loading = false
             dispatch({ type: 'FORGOT_PASSWORD_SUCCESS', payload: forgotPassword, loading })
         }
@@ -113,7 +113,7 @@ export const resetPassword = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const resetPassword = await axios.patch(`${url}/api/v1/auth/reset-password`, credentials, { withCredentials: true })
+            const resetPassword = await axios.patch(`${url}/api/v1/auth/reset-password`, credentials, { withCredentials: false })
             loading = getState().auth.loading = false
             dispatch({ type: 'RESET_PASSWORD_SUCCESS', payload: resetPassword, loading })
         }
@@ -127,7 +127,7 @@ export const activateAccount = (credentials) => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const activateAccount = await axios.patch(`${url}/api/v1/account/activation`, credentials, { withCredentials: true })
+            const activateAccount = await axios.patch(`${url}/api/v1/account/activation`, credentials, { withCredentials: false })
             loading = getState().auth.loading = false
             dispatch({ type: 'ACCOUNT_ACTIVATION_SUCCESS', payload: activateAccount.data, loading })
         }
@@ -141,7 +141,7 @@ export const signOut = () => {
     return async (dispatch, getState) => {
         try {
             let loading = getState().auth.loading = true
-            const signOut = await axios.get(`${url}/api/v1/sign-out`, { withCredentials: true });
+            const signOut = await axios.get(`${url}/api/v1/sign-out`, { withCredentials: false });
             if (signOut.status === 200) {
                 saveAuthCred('user_auth_cred', {})
             }
