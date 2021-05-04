@@ -74,7 +74,7 @@ class Cart extends Component {
     if (this.props.cart && this.props.cart.loading) return <Loading />;
     if (carts.length === 0)
       return (
-        <h2 className="text-center">Select Products to add in the cart</h2>
+        <h2 className="text-center">Select products to add in the cart</h2>
       );
     // if (loading) return <Loading />
 

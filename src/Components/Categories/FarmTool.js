@@ -30,8 +30,8 @@ class FarmTool extends Component {
   render() {
     const { product, productError } = this.props
     const { products } = product
-    if (products && products.length === 0) return <h2 className="text-center">No Product Available</h2>
-    if (product && (product.loading && productError === null)) return <Loading />
+    if (product.loading && productError === null) return <Loading />
+    if (products && products.length === 0) return <h2 className="text-center">No product available</h2>
     
     return (
       <Container fluid className="product-div">

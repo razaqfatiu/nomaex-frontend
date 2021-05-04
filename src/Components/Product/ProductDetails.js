@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Button,
   Container,
@@ -7,20 +7,20 @@ import {
   Col,
   Carousel,
   ButtonGroup,
-} from "react-bootstrap";
-import "./Product.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
-import ProductUpdate from "./ProductUpdate";
-import Loading from "../layout/Loading";
+} from 'react-bootstrap';
+import './Product.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+import ProductUpdate from './ProductUpdate';
+import Loading from '../layout/Loading';
 import {
   getOneProduct,
   deleteAProduct,
-} from "../../Store/actions/productAction";
-import checkAuth from "../Helpers/check-auth";
-import { addItemsToCart } from "../../Store/actions/cartAction";
-import { formatCurrency } from "../Helpers/currency-formatter";
-import { calcDiscountPrice } from "../Helpers/price-converters";
+} from '../../Store/actions/productAction';
+import checkAuth from '../Helpers/check-auth';
+import { addItemsToCart } from '../../Store/actions/cartAction';
+import { formatCurrency } from '../Helpers/currency-formatter';
+import { calcDiscountPrice } from '../Helpers/price-converters';
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class ProductDetails extends Component {
   handleAddToCart = (e) => {
     this.setState({ isAdded: true });
     this.props.addItemsToCart(this.state);
-    if (!checkAuth.isAuth()) return this.props.history.push("/signin");
+    if (!checkAuth.isAuth()) return this.props.history.push('/signin');
   };
 
   handleToggle = (e) => {
@@ -78,8 +78,10 @@ class ProductDetails extends Component {
     // if (this.state.isDeleted)
     if (productError && productError.status === 404)
       return <h3 className="text-center">{productError.data.getOneProduct}</h3>;
-      if (product && (product.loading && productError === null)) return <Loading />
+    if (product.loading && productError === null) return <Loading />;
     if (product && product.length === 0) return <Loading />;
+    //   if (product && (product.loading && productError === null)) return <Loading />
+    // if (product && product.length === 0) return <Loading />;
 
     return (
       <Container className="product-details-container">
@@ -117,7 +119,7 @@ class ProductDetails extends Component {
                     1
                   )
                 )}
-              </span>{" "}
+              </span>{' '}
               &nbsp;&nbsp;
               <strike>
                 <span>{`${formatCurrency(product[0].productPrice)}`}</span>
@@ -148,14 +150,14 @@ class ProductDetails extends Component {
             <div className="m-3">
               <span className="label text-left">Shipping From: </span>
               <span>
-                {product[0].ProductShipping.state},{" "}
+                {product[0].ProductShipping.state},{' '}
                 {product[0].ProductShipping.country}
               </span>
             </div>
 
             <div className="m-3 ">
               <span className="label text-left">
-                Expected Time of Arrival:{" "}
+                Expected Time of Arrival:{' '}
               </span>
               <b>
                 <span className="text-success">
@@ -186,11 +188,11 @@ class ProductDetails extends Component {
               className="mt-5"
               onClick={this.handleAddToCart}
             >
-              <FontAwesomeIcon icon={faCartArrowDown} /> Add to Cart{" "}
+              <FontAwesomeIcon icon={faCartArrowDown} /> Add to Cart{' '}
             </Button>
             <div id="hideme-container" className="">
               <div id="hideme" className="text-success">
-                {isAdded ? "Added" : ""}
+                {isAdded ? 'Added' : ''}
               </div>
             </div>
             {/* </div> */}
@@ -213,14 +215,14 @@ class ProductDetails extends Component {
                 <h3 className="text-center text-danger">
                   {productError && productError !== null
                     ? productError.data.response
-                    : ""}
+                    : ''}
                 </h3>
                 <ProductUpdate product={product} />
               </Container>
             )}
           </div>
         ) : (
-          ""
+          ''
         )}
       </Container>
     );

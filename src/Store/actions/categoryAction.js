@@ -1,18 +1,22 @@
-const axios = require('axios').default
-require('dotenv').config()
-const url = process.env.REACT_APP_API_URL
+const axios = require('axios').default;
+require('dotenv').config();
+const url = process.env.REACT_APP_API_URL;
 
-export const getCategories = (catId) => {
+export const getCategories = () => {
   return async (dispatch, getState) => {
     try {
-      loading = getState().auth.loading = true
-      const getCategories = await axios.get(`${url}/api/v1/categories`)
-      let loading = getState().category.loading = false
-      // console.log(getCategories.data.getCategories)
-      dispatch({ type: 'GET_CATEGORIES_SUCCESS', categories: getCategories.data.getCategories, loading })
+      let loading = (getState().category.loading = true);
+      const getCategories = await axios.get(`${url}/api/v1/categories`, {
+        withCredentials: true,
+      });
+      loading = getState().category.loading = false;
+      dispatch({
+        type: 'GET_CATEGORIES_SUCCESS',
+        categories: getCategories.data.data,
+        loading,
+      });
+    } catch (error) {
+      dispatch({ type: 'GET_CATEGORIES_FAILURE', error });
     }
-    catch (error) {
-      dispatch({ type: 'GET_CATEGORIES_FAILURE', error })
-    }
-  }
-}
+  };
+};

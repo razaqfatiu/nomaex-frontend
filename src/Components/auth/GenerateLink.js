@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { generateRefreshLink } from '../../Store/actions/authAction';
+import Loading from '../layout/Loading';
 
 class GenerateLink extends Component {
   constructor() {
@@ -23,6 +24,8 @@ class GenerateLink extends Component {
   };
 
   render() {
+    const { auth } = this.props
+    if(auth.loading && auth.authError === null) return <Loading />
     return (
       <div className="m-4 text-center">
         <h4>Please provide your email</h4>

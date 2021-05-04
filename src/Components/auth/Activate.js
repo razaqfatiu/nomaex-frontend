@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { activateAccount } from '../../Store/actions/authAction';
 import { connect } from 'react-redux';
+import Loading from '../layout/Loading';
 
 class Activate extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Activate extends Component {
   render() {
     const { auth } = this.props;
     const { payload, authError } = auth;
-    console.log(auth);
+    if (auth.loading && auth.authError === null) return <Loading />
     if (authError && authError.request.status === 401)
       return (
         <div className="text-center">

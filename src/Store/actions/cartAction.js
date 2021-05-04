@@ -7,10 +7,11 @@ export const addItemsToCart = (item) => {
     try {
       let loading = getState().cart.loading = true;
       const addItemsToCart = await axios.post(`${url}/api/v1/product/cart`, item, { withCredentials: true })
+      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: true })
       loading = getState().cart.loading = false
       dispatch({
         type: 'ADDED_ITEM_TO_CART_SUCCESS',
-        cart: addItemsToCart.data.addItemsToCart,
+        cart: getUserCartItems.data.getUserCart,
         loading
       })
     }
