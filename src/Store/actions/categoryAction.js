@@ -7,7 +7,7 @@ export const getCategories = () => {
     try {
       let loading = (getState().category.loading = true);
       const getCategories = await axios.get(`${url}/api/v1/categories`, {
-        withCredentials: false,
+        withCredentials: true,
       });
       loading = getState().category.loading = false;
       dispatch({

@@ -8,7 +8,7 @@ export const getInitializedOrderRequest = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: false })
+      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: true })
       loading = getState().cart.loading = await false
       dispatch({
         type: 'GET_NEW_ORDER_SUCCESS',
@@ -26,8 +26,8 @@ export const checkOutPay = (cred) => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const checkOutPay = await axios.post(`${url}/api/v1/order/pay`, cred, { withCredentials: false })
-      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: false })
+      const checkOutPay = await axios.post(`${url}/api/v1/order/pay`, cred, { withCredentials: true })
+      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'CHECKOUT_PAY_SUCCESS',
@@ -46,7 +46,7 @@ export const verifyOrderCheckOut = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const verifyOrderCheckOut = await axios.get(`${url}/api/v1/order/verify`, { withCredentials: false })
+      const verifyOrderCheckOut = await axios.get(`${url}/api/v1/order/verify`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'VERIFY_ORDER_CHECKOUT_SUCCESS',
@@ -64,7 +64,7 @@ export const cancelOrder = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const cancelOrder = await axios.delete(`${url}/api/v1/order/cancel`, { withCredentials: false })
+      const cancelOrder = await axios.delete(`${url}/api/v1/order/cancel`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'CANCEL_ORDER_SUCCESS',
@@ -82,7 +82,7 @@ export const getUserOrders = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const getUserOrders = await axios.get(`${url}/api/v1/orders/recent`, { withCredentials: false })
+      const getUserOrders = await axios.get(`${url}/api/v1/orders/recent`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'USER_RECENT_ORDER_SUCCESS',
@@ -102,7 +102,7 @@ export const adminGetAllOrders = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const adminGetOrders = await axios.get(`${url}/api/v1/admin/orders`, { withCredentials: false })
+      const adminGetOrders = await axios.get(`${url}/api/v1/admin/orders`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'ADMIN_GET_ORDER_SUCCESS',
@@ -122,7 +122,7 @@ export const adminGetOneOrder = (id) => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const adminGetOneOrders = await axios.get(`${url}/api/v1/admin/orders/${id}`, { withCredentials: false })
+      const adminGetOneOrders = await axios.get(`${url}/api/v1/admin/orders/${id}`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'ADMIN_GET_ONE_ORDER_SUCCESS',
@@ -143,8 +143,8 @@ export const confirmOrderShipped = (orderId) => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().order.loading = true;
-      const adminGetOrders = await axios.get(`${url}/api/v1/admin/orders`, { withCredentials: false })
-      const orderShipped = await axios.get(`${url}/api/v1/admin/shipped/orders/${orderId}`, { withCredentials: false })
+      const adminGetOrders = await axios.get(`${url}/api/v1/admin/orders`, { withCredentials: true })
+      const orderShipped = await axios.get(`${url}/api/v1/admin/shipped/orders/${orderId}`, { withCredentials: true })
       loading = getState().order.loading = false
       dispatch({
         type: 'ORDER_SHIPPED_SUCCESS',

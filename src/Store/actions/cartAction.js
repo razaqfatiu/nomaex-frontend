@@ -6,8 +6,8 @@ export const addItemsToCart = (item) => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().cart.loading = true;
-      const addItemsToCart = await axios.post(`${url}/api/v1/product/cart`, item, { withCredentials: false })
-      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: false })
+      const addItemsToCart = await axios.post(`${url}/api/v1/product/cart`, item, { withCredentials: true })
+      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: true })
       loading = getState().cart.loading = false
       dispatch({
         type: 'ADDED_ITEM_TO_CART_SUCCESS',
@@ -25,8 +25,8 @@ export const deleteCartItem = (cartId) => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().cart.loading = true;
-      const deleteCartItem = await axios.delete(`${url}/api/v1/product/cart/${cartId}`, { withCredentials: false })
-      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: false })
+      const deleteCartItem = await axios.delete(`${url}/api/v1/product/cart/${cartId}`, { withCredentials: true })
+      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: true })
       loading = getState().cart.loading = false
       dispatch({
         type: 'DELETED_ITEM_FROM_CART_SUCCESS',
@@ -44,8 +44,8 @@ export const getUserCartItems = () => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().cart.loading = true;
-      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: false })
-      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: false })
+      const getNewOrder = await axios.get(`${url}/api/v1/cart/get-new-order`, { withCredentials: true })
+      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: true })
       loading = getState().cart.loading = false
       dispatch({
         type: 'GET_USER_CART_ITEMS_SUCCESS',
@@ -64,8 +64,8 @@ export const initializeOrder = (cred) => {
   return async (dispatch, getState) => {
     try {
       let loading = getState().cart.loading = true;
-      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: false })
-      const createOrder = await axios.post(`${url}/api/v1/cart/order`, cred, { withCredentials: false })
+      const getUserCartItems = await axios.get(`${url}/api/v1/product/cart`, { withCredentials: true })
+      const createOrder = await axios.post(`${url}/api/v1/cart/order`, cred, { withCredentials: true })
       loading = getState().cart.loading = false
       dispatch({
         type: 'INITIALIZE_ORDER_SUCCESS',
