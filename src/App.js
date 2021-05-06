@@ -39,7 +39,7 @@ import OrderDetails from './Components/Order/OrderDetails';
 import Homes from './Components/users/homes';
 import Auth from './Components/auth/Auth';
 import GenerateLink from './Components/auth/GenerateLink';
-
+import ResendVerificationLink from './Components/auth/ResendVerificationLink';
 
 
 class App extends Component {
@@ -129,6 +129,7 @@ class App extends Component {
               <Route path="/signup" component={SignUp} />
               <Route path="/verify/user/:token" component={Activate} />
               <Route path="/generate/verify-link" component={GenerateLink} />
+              <Route path="/resend/verify-link" component={ResendVerificationLink} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:token" component={ResetPassword} />
               <Route path="/activate/:token" component={ResetPassword} />

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { resendActivationLink } from '../../Store/actions/authAction';
 import './signIn.scss';
 
-export default class SetVerificationLink extends Component {
+class SetVerificationLink extends Component {
+
   render() {
     return (
       <div className="sent-verification-link">
@@ -12,8 +14,8 @@ export default class SetVerificationLink extends Component {
         <br />
         <div>Kindly wait few moment before retry</div>
         <br />
-        <button className="bg-danger">
-          <a href="/generate/verify-link" className="text-white">
+        <button className="btn" onClick={this.handleResendLink}>
+          <a href="/resend/verify-link" className="btn btn-warning text-white">
             Resend activation link
           </a>
         </button>
@@ -21,3 +23,4 @@ export default class SetVerificationLink extends Component {
     );
   }
 }
+export default SetVerificationLink;

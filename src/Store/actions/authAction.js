@@ -137,6 +137,21 @@ export const activateAccount = (credentials) => {
     }
 }
 
+export const resendActivationLink = (credentials) => {
+    return async (dispatch, getState) => {
+        try {
+            let loading = getState().auth.loading = true
+            const activationLink = await axios.post(`${url}/api/v1/auth/resend-link`, credentials, { withCredentials: true })
+            console.log(activationLink);
+            loading = getState().auth.loading = false
+            dispatch({ type: 'RESEND_ACTIVATION_LINK_SUCCESS', payload: activationLink, loading })
+        }
+        catch (error) {
+            dispatch({ type: 'RESEND_ACTIVATION_LINK_FAILURE', error })
+        }
+    }
+}
+
 export const signOut = () => {
     return async (dispatch, getState) => {
         try {
