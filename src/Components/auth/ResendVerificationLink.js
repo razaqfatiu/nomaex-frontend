@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { resendActivationLink } from '../../Store/actions/authAction';
 import Loading from '../layout/Loading';
 import './signIn.scss';
@@ -28,7 +29,7 @@ class ResendVerificationLink extends Component {
     const { auth } = this.props
     if(auth.loading) return <Loading />
 
-    console.log(this.props)
+    if(auth.payload.status && auth.payload.status === 200) return <Redirect to='/signin' />
 
     return (
       <div className="m-4 text-center">
